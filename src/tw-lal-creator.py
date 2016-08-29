@@ -32,10 +32,7 @@ generator.setFont('/Library/Fonts/Arial Unicode.ttf')
 text = u"""敬啟者：
 緣 台端於民國OO年O月O日向本公司承租OO型號汽車乙輛，雙方並簽訂契約。前揭汽車車齡尚新、車況良好。詎， 台端之子OOO於本(OO)年O月O日因駕駛不慎，擦撞分隔島上之電線桿，使車門、車窗、保險桿均毀損。貴我雙方前開租賃契約第O條之約定：「甲方(按即 台端)如未盡善良管理人之責任，致汽車毀損滅失者，應負賠償責任。」是特此通知 台端，請於函到後O日內，主動與本人聯絡，並賠償本人之損害，逾期，本人將依法追溯 台端之賠償責任。
 """
-x_begin = CONTENT_X_BEGIN
-y_begin = CONTENT_Y_BEGIN
-line_counter = 1
-word_counter = 1
+x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
 print 'parse content...'
 blank_lal_creator = pdfmerger.PDFmerger(LETTER_FORMAT_PATH, LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
 blank_lal_creator.addSrcPageToDest(0)
