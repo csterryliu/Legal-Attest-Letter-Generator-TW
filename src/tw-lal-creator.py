@@ -5,7 +5,6 @@ import pdfmerger
 
 LETTER_FORMAT_PATH = '../res/tw_lal.pdf'
 GENERATED_TEXT_PATH = 'content.pdf'
-GENERATED_BLANK_LETTER_PATH = 'lal_to_be_merged.pdf'
 GENERATED_FINAL_LETTER_PATH = 'output.pdf'
 PDF_INCH = 72
 A4_WIDE = 8.2677 * PDF_INCH
