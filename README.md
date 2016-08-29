@@ -12,6 +12,7 @@ tw-lal-creator -content content.txt -sentFrom name1 -sentFromAddr addr1 -sendTo 
 - [Letter format from Post Office of Taiwan](http://www.post.gov.tw/post/internet/Download/index.jsp?ID=220301)
 
 ## Roadmap ##
+- Match PEP8  
 - Provide application GUI
 - Turn it into a cloud service (I'm considering)
 
