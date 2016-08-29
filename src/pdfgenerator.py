@@ -10,8 +10,8 @@ class pdfgenerator:
     class pdfgenerator
     It creates a temporary pdf file for merging.
     """
-    def __init__(self, wide, height):
-        self.canvas = canvas.Canvas('content.pdf', pagesize=(wide, height))
+    def __init__(self, filename, wide, height):
+        self.canvas = canvas.Canvas(filename, pagesize=(wide, height))
         self.canvas.setStrokeColorRGB(0,0,0)
         self.canvas.setFillColorRGB(0,0,0)
 

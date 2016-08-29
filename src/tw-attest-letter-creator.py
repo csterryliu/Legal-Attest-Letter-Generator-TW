@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 import pdfgenerator
 
-LAL_COPY = '../res/tw_lal.pdf'
+LAL_FORMAT_PATH = '../res/tw_lal.pdf'
+GENERATED_TEXT_PATH = 'content.pdf'
 PDF_INCH = 72
 A4_WIDE = 8.2677 * PDF_INCH
 A4_HEIGHT = 11.692 * PDF_INCH
@@ -13,7 +14,7 @@ CONTENT_Y_INTERVAL = 0.47 * PDF_INCH
 CONTENT_X_FIX = 0.001 * PDF_INCH
 CONTENT_Y_FIX = 0.001 * PDF_INCH
 
-generator = pdfgenerator.pdfgenerator(A4_WIDE, A4_HEIGHT)
+generator = pdfgenerator.pdfgenerator(GENERATED_TEXT_PATH, A4_WIDE, A4_HEIGHT)
 generator.setFont('/Library/Fonts/Arial Unicode.ttf', 20)
 text = u'你好'
 x_begin = CONTENT_X_BEGIN
