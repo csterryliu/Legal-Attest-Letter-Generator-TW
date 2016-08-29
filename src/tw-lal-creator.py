@@ -5,6 +5,8 @@ import pdfmerger
 
 LETTER_FORMAT_PATH = '../res/tw_lal.pdf'
 GENERATED_TEXT_PATH = 'content.pdf'
+GENERATED_BLANK_LETTER_PATH = 'lal_to_be_merged.pdf'
+GENERATED_FINAL_LETTER_PATH = 'output.pdf'
 PDF_INCH = 72
 A4_WIDE = 8.2677 * PDF_INCH
 A4_HEIGHT = 11.692 * PDF_INCH
@@ -17,10 +19,13 @@ CONTENT_Y_FIX = 0.001 * PDF_INCH
 CONTENT_MAX_WORD_PER_LINE = 20
 CONTENT_MAX_LINE_PER_PAGE = 10
 
-def _getNewLineCordinate(currentY):
+def getNewLineCordinate(currentY):
     newX = CONTENT_X_BEGIN
     newY = currentY - (CONTENT_Y_INTERVAL + CONTENT_Y_FIX)
     return newX, newY
+
+def resetCordinatesAndCounters():
+    return CONTENT_X_BEGIN, CONTENT_Y_BEGIN, 1, 1
 
 generator = pdfgenerator.PDFgenerator(GENERATED_TEXT_PATH, A4_WIDE, A4_HEIGHT)
 generator.setFont('/Library/Fonts/Arial Unicode.ttf')
@@ -31,30 +36,31 @@ x_begin = CONTENT_X_BEGIN
 y_begin = CONTENT_Y_BEGIN
 line_counter = 1
 word_counter = 1
-lal_extend_worker = pdfmerger.PDFmerger(LETTER_FORMAT_PATH, LETTER_FORMAT_PATH, 'lal_to_be_merged.pdf')
-lal_extend_worker.addSrcPageToDest(0)
-print 'total number of Chinese letter: ' + str(len(text))
+print 'parse content...'
+blank_lal_creator = pdfmerger.PDFmerger(LETTER_FORMAT_PATH, LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
+blank_lal_creator.addSrcPageToDest(0)
 for i in range(0, len(text)):
     if text[i] == '\n' or (word_counter > CONTENT_MAX_WORD_PER_LINE):
-        x_begin, y_begin = _getNewLineCordinate(y_begin)
+        x_begin, y_begin = getNewLineCordinate(y_begin)
         line_counter = line_counter + 1
         word_counter = 1
+        if text[i] == '\n':
+            continue
     if line_counter > CONTENT_MAX_LINE_PER_PAGE:
         generator.endThisPage()
-        x_begin = CONTENT_X_BEGIN
-        y_begin = CONTENT_Y_BEGIN
-        line_counter = 1
-        word_counter = 1
-        lal_extend_worker.addSrcPageToDest(0)
-    if (text[i] != '\n'):
-        generator.drawString(x_begin, y_begin, text[i])
-        x_begin += (CONTENT_X_INTERVAL - CONTENT_X_FIX)
-        word_counter = word_counter + 1
+        blank_lal_creator.addSrcPageToDest(0)
+        x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
+    generator.drawString(x_begin, y_begin, text[i])
+    x_begin += (CONTENT_X_INTERVAL - CONTENT_X_FIX)
+    word_counter = word_counter + 1
 generator.endThisPage()
-generator.saveAndCloseFile()
-lal_extend_worker.save()
+generator.save()
+blank_lal_creator.save()
 
-merger = pdfmerger.PDFmerger(GENERATED_TEXT_PATH, 'lal_to_be_merged.pdf', 'output.pdf')
+print 'start merging...'
+merger = pdfmerger.PDFmerger(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, GENERATED_FINAL_LETTER_PATH)
 for i in range(merger.getSrcTotalPage()):
     merger.mergeSrcPageToDestPageThenAdd(i, i)
 merger.save()
+
+print 'Finish. Filename: ' + GENERATED_FINAL_LETTER_PATH

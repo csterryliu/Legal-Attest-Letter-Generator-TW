@@ -30,7 +30,7 @@ class PDFgenerator:
         # keep the font setting
         self.__canvas.setFont(_DEFAULT_FONT_NAME, self.__fontSize * _POINT)
 
-    def saveAndCloseFile(self):
+    def save(self):
         """
         Saves and close the PDF document in the file.
         After this operation the canvas must not be used further.
