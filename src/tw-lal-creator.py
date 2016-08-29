@@ -34,8 +34,6 @@ text = u"""敬啟者：
 """
 x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
 print 'parse content...'
-blank_lal_creator = pdfmerger.PDFmerger(LETTER_FORMAT_PATH, LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
-blank_lal_creator.addSrcPageToDest(0)
 for i in range(0, len(text)):
     if text[i] == '\n' or (word_counter > CONTENT_MAX_WORD_PER_LINE):
         x_begin, y_begin = getNewLineCordinate(y_begin)
@@ -45,19 +43,17 @@ for i in range(0, len(text)):
             continue
     if line_counter > CONTENT_MAX_LINE_PER_PAGE:
         generator.endThisPage()
-        blank_lal_creator.addSrcPageToDest(0)
         x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
     generator.drawString(x_begin, y_begin, text[i])
     x_begin += (CONTENT_X_INTERVAL - CONTENT_X_FIX)
     word_counter = word_counter + 1
 generator.endThisPage()
 generator.save()
-blank_lal_creator.save()
 
 print 'start merging...'
-merger = pdfmerger.PDFmerger(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, GENERATED_FINAL_LETTER_PATH)
+merger = pdfmerger.PDFmerger(GENERATED_TEXT_PATH, LETTER_FORMAT_PATH, GENERATED_FINAL_LETTER_PATH)
 for i in range(merger.getSrcTotalPage()):
-    merger.mergeSrcPageToDestPageThenAdd(i, i)
+    merger.mergeSrcPageToDestPageThenAdd(i, 0)
 merger.save()
 
 print 'Finish. Filename: ' + GENERATED_FINAL_LETTER_PATH

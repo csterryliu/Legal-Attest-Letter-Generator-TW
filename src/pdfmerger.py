@@ -13,13 +13,10 @@ class PDFmerger:
 
     def mergeSrcPageToDestPageThenAdd(self, srcPageNum, destPageNum):
         if self.__checkPageNum(self.__src, srcPageNum) == True and self.__checkPageNum(self.__dest, destPageNum) == True:
-            destPage = self.__dest.getPage(destPageNum)
-            destPage.mergePage(self.__src.getPage(srcPageNum))
-            self.__output.addPage(destPage)
-
-    def addSrcPageToDest(self, srcPageNum):
-        if self.__checkPageNum(self.__src, srcPageNum) == True:
-            self.__output.addPage(self.__src.getPage(srcPageNum))
+            # by doing this the original destination page will be intact after mergin
+            srcPage = self.__src.getPage(srcPageNum)
+            srcPage.mergePage(self.__dest.getPage(destPageNum))
+            self.__output.addPage(srcPage)
 
     def getSrcTotalPage(self):
         return self.__src.getNumPages()
