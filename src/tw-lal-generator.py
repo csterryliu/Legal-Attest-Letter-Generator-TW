@@ -6,6 +6,7 @@ import pdfmerger
 LETTER_FORMAT_PATH = '../res/tw_lal.pdf'
 GENERATED_TEXT_PATH = 'content.pdf'
 GENERATED_FINAL_LETTER_PATH = 'output.pdf'
+DEFAULT_FONT_PATH = '../res/TW-Kai-98_1.ttf'
 PDF_INCH = 72
 A4_WIDE = 8.2677 * PDF_INCH
 A4_HEIGHT = 11.692 * PDF_INCH
@@ -27,7 +28,7 @@ def resetCordinatesAndCounters():
     return CONTENT_X_BEGIN, CONTENT_Y_BEGIN, 1, 1
 
 generator = pdfgenerator.PDFgenerator(GENERATED_TEXT_PATH, A4_WIDE, A4_HEIGHT)
-generator.setFont('/Library/Fonts/Arial Unicode.ttf')
+generator.setFont(DEFAULT_FONT_PATH)
 text = u"""敬啟者：
 緣 台端於民國OO年O月O日向本公司承租OO型號汽車乙輛，雙方並簽訂契約。前揭汽車車齡尚新、車況良好。詎， 台端之子OOO於本(OO)年O月O日因駕駛不慎，擦撞分隔島上之電線桿，使車門、車窗、保險桿均毀損。貴我雙方前開租賃契約第O條之約定：「甲方(按即 台端)如未盡善良管理人之責任，致汽車毀損滅失者，應負賠償責任。」是特此通知 台端，請於函到後O日內，主動與本人聯絡，並賠償本人之損害，逾期，本人將依法追溯 台端之賠償責任。
 """
