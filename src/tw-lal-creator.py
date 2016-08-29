@@ -23,4 +23,10 @@ for i in range(0, len(text)):
     generator.drawString(x_begin, y_begin, text[i])
     x_begin += (CONTENT_X_INTERVAL + CONTENT_X_FIX)
 generator.endThisPage()
+x_begin = CONTENT_X_BEGIN
+y_begin = CONTENT_Y_BEGIN
+for i in range(0, len(text)):
+    generator.drawString(x_begin, y_begin, text[i])
+    x_begin += (CONTENT_X_INTERVAL + CONTENT_X_FIX)
+generator.endThisPage()
 generator.saveAndCloseFile()
