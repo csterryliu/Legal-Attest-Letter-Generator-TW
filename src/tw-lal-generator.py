@@ -103,7 +103,7 @@ blank_letter_producer.save()
 print 'start merging...'
 merger = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, GENERATED_FINAL_LETTER_PATH)
 for i in range(merger.getSrcTotalPage()):
-    merger.mergeSrcPageToDestPageThenAdd(i, i)
+    merger.mergeSrcPageToDestPage(i, i)
 merger.save()
 
 print 'Finish. Filename: ' + GENERATED_FINAL_LETTER_PATH

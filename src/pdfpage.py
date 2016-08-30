@@ -41,7 +41,7 @@ class PDFPageMerge:
         self.__outputFileName = outputFileName
         self.__output = PdfFileWriter()
 
-    def mergeSrcPageToDestPageThenAdd(self, srcPageNum, destPageNum):
+    def mergeSrcPageToDestPage(self, srcPageNum, destPageNum):
         if self.__checkPageNum(self.__src, srcPageNum) == True and self.__checkPageNum(self.__dest, destPageNum) == True:
             destPage = self.__dest.getPage(destPageNum)
             destPage.mergePage(self.__src.getPage(srcPageNum))
