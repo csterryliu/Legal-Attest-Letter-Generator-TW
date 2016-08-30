@@ -8,13 +8,13 @@
 ## Dependency ##
 - [PyPDF2 1.26](https://github.com/mstamy2/PyPDF2)  
 - [reportlab 3.3.0](https://bitbucket.org/rptlab/reportlab)
-- [The letter sample from Post Office of Taiwan](http://www.post.gov.tw/post/internet/Download/index.jsp?ID=220301)
-- [Traditional Chinese Font - Provided by National Development Council, Taiwan ](http://data.gov.tw/node/5961)
+- [Letter sample provided by Post Office of Taiwan](http://www.post.gov.tw/post/internet/Download/index.jsp?ID=220301)
+- [Traditional Chinese font provided by National Development Council, Taiwan ](http://data.gov.tw/node/5961)
 
 ## Roadmap ##
 - Match PEP8  
 - Provide application GUI
-- Turn it into a cloud service (I'm considering)
+- Turn it into a cloud service (Maybe)
 
 ## License ##
 MIT
