@@ -2,9 +2,9 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 
 # TODO: create an abstract or interface class
 
-class PDFPageSelector:
+class PDFPagePick:
     """
-    class PDFPageSelector
+    class PDFPagePick
     Select any page you want and then organize them into a new PDF file
     """
     def __init__(self, src, outputFileName):
@@ -12,7 +12,7 @@ class PDFPageSelector:
         self.__output = PdfFileWriter()
         self.__outputFileName = outputFileName
 
-    def selectIndividualPages(self, pageNumList):
+    def pickIndividualPages(self, pageNumList):
         for pageNum in pageNumList:
             if self.__checkPageNum(self.__src, pageNum) == True:
                 self.__output.addPage(self.__src.getPage(pageNum))

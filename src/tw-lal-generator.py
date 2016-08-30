@@ -40,7 +40,7 @@ generator.drawString(CC_X_BEGIN + CC_X_INTERVAL, CC_Y_BEGIN, cc)
 generator.drawString(CC_ADDR_X_BEGIN, CC_ADDR_Y_BEGIN, ccAddr)
 
 
-blank_letter_producer = pdfpage.PDFPageSelector(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
+blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
 generator.setFont(DEFAULT_FONT_PATH, 20)
 x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
 print 'parse content...'
@@ -53,13 +53,13 @@ for i in range(0, len(text)):
             continue
     if line_counter > CONTENT_MAX_LINE_PER_PAGE:
         generator.endThisPage()
-        blank_letter_producer.selectIndividualPages([0])
+        blank_letter_producer.pickIndividualPages([0])
         x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
     generator.drawString(x_begin, y_begin, text[i])
     x_begin += (CONTENT_X_INTERVAL - CONTENT_X_FIX)
     word_counter = word_counter + 1
 generator.endThisPage()
-blank_letter_producer.selectIndividualPages([0])
+blank_letter_producer.pickIndividualPages([0])
 generator.save()
 blank_letter_producer.save()
 
