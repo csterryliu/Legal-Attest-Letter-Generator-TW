@@ -6,9 +6,9 @@ _DEFAULT_FONT_NAME = 'user-sepecified-font'
 _DEFAULT_FONT_SIZE = 20
 _POINT = 1
 
-class PDFgenerator:
+class PDFGenerator:
     """
-    class PDFgenerator
+    class PDFGenerator
     It creates a temporary pdf file for merging.
     """
     def __init__(self, filename, wide, height):
