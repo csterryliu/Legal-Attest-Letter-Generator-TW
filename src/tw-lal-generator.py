@@ -25,16 +25,16 @@ senderAddr = u'某某市某某區某某路二段30號'
 cc = u'吳小英'
 ccAddr = '某某縣某某鎮某某路三段111號'
 
-generator.drawString(RECEIVER_X_BEGIN, RECEIVER_Y_BEGIN, receiver)
-generator.drawString(RECEIVER_X_BEGIN + RECEIVER_X_INTERVAL, RECEIVER_Y_BEGIN, receiver)
-generator.drawString(RECEIVER_X_BEGIN, RECEIVER_Y_BEGIN - RECEIVER_Y_INTERVAL, receiver)
-generator.drawString(RECEIVER_ADDR_X_BEGIN, RECEIVER_ADDR_Y_BEGIN, receiverAddr)
-generator.drawString(RECEIVER_ADDR_X_BEGIN, RECEIVER_ADDR_Y_BEGIN - RECEIVER_ADDR_Y_INTERVAL, receiverAddr)
 generator.drawString(SENDER_X_BEGIN, SENDER_Y_BEGIN, sender)
 generator.drawString(SENDER_X_BEGIN + SENDER_X_INTERVAL, SENDER_Y_BEGIN, sender)
 generator.drawString(SENDER_X_BEGIN, SENDER_Y_BEGIN - SENDER_Y_INTERVAL, sender)
 generator.drawString(SENDER_ADDR_X_BEGIN, SENDER_ADDR_Y_BEGIN, senderAddr)
 generator.drawString(SENDER_ADDR_X_BEGIN, SENDER_ADDR_Y_BEGIN - SENDER_ADDR_Y_INTERVAL, senderAddr)
+generator.drawString(RECEIVER_X_BEGIN, RECEIVER_Y_BEGIN, receiver)
+generator.drawString(RECEIVER_X_BEGIN + RECEIVER_X_INTERVAL, RECEIVER_Y_BEGIN, receiver)
+generator.drawString(RECEIVER_X_BEGIN, RECEIVER_Y_BEGIN - RECEIVER_Y_INTERVAL, receiver)
+generator.drawString(RECEIVER_ADDR_X_BEGIN, RECEIVER_ADDR_Y_BEGIN, receiverAddr)
+generator.drawString(RECEIVER_ADDR_X_BEGIN, RECEIVER_ADDR_Y_BEGIN - RECEIVER_ADDR_Y_INTERVAL, receiverAddr)
 generator.drawString(CC_X_BEGIN, CC_Y_BEGIN, cc)
 generator.drawString(CC_X_BEGIN + CC_X_INTERVAL, CC_Y_BEGIN, cc)
 generator.drawString(CC_ADDR_X_BEGIN, CC_ADDR_Y_BEGIN, ccAddr)
