@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import argparse
 import pdfpainter
 import pdfpage
 from lal_constants import *
@@ -11,6 +12,39 @@ def getNewLineCordinate(currentY):
 
 def resetCordinatesAndCounters():
     return CONTENT_X_BEGIN, CONTENT_Y_BEGIN, 1, 1
+
+argParser = argparse.ArgumentParser(description='台灣郵局存證信函產生器',
+                                    add_help=False)
+argParser.add_argument('article_file',
+                        action='store',
+                        help='存證信函全文之純文字檔路徑')
+argParser.add_argument('--senderName',
+                        action='append',
+                        nargs='+',
+                        metavar='寄件人姓名')
+argParser.add_argument('--senderAddr',
+                        action='store',
+                        metavar='寄件人詳細地址')
+argParser.add_argument('--receiverName',
+                        action='append',
+                        nargs='+',
+                        metavar='收件人姓名')
+argParser.add_argument('--receiverAddr',
+                        action='store',
+                        metavar='收件人詳細地址')
+argParser.add_argument('--ccName',
+                        action='append',
+                        nargs='+',
+                        metavar='副本收件人姓名')
+argParser.add_argument('--ccAddr',
+                        action='store',
+                        metavar='副本收件人詳細地址')
+argParser.add_argument('--help',
+                        action='help',
+                        help='顯示使用說明')
+
+args = argParser.parse_args()
+print args
 
 generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE, LETTER_FORMAT_HEIGHT)
 generator.setFont(DEFAULT_FONT_PATH, 10)
