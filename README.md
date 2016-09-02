@@ -10,7 +10,10 @@ Download and install [Python 2.7](https://www.python.org/downloads/) to your com
 ```
 For example:  
 ```
-./tw-lal-generator 信函正文.txt
+# 只有內文，無收件人等資訊
+./tw-lal-generator.py 信函正文.txt
+
+# 含正文、寄件人姓名地址、收件人姓名地址、副本收件人姓名地址
 ./tw-lal-generator.py 信函正文.txt --senderName 王大明 --senderAddr 某某縣某某鎮某某路100號 --receiverName 林小英 --receiverAddr 某某市某某街71號 --ccName 吳大 --ccAddr 某某縣某某鄉某某路90號
 ```
 
