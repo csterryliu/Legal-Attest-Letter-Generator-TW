@@ -48,7 +48,7 @@ def fillNameAndAddress(namelist, address, type):
         name = namelist[i]
         generator.drawString(NAME_CORDINATE[type+'_x_begin'] + (i*NAME_CORDINATE[type+'_x_interval']), NAME_CORDINATE[type+'_y_begin'], name)
     if (sendersAddr is not None):
-        generator.drawString(ADDR_CORDINATE[type+'_x_begin'] , ADDR_CORDINATE[type+'_y_begin'], sendersAddr)
+        generator.drawString(ADDR_CORDINATE[type+'_x_begin'] , ADDR_CORDINATE[type+'_y_begin'], address)
 
 def getNewLineCordinate(currentY):
     newX = CONTENT_X_BEGIN
