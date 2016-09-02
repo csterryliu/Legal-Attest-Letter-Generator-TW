@@ -43,6 +43,13 @@ def readMainText():
     text_file.close()
     return text.decode('utf-8')
 
+def fillNameAndAddress(namelist, address, type):
+    for i in range(len(namelist)):
+        name = namelist[i]
+        generator.drawString(NAME_CORDINATE[type+'_x_begin'] + (i*NAME_CORDINATE[type+'_x_interval']), NAME_CORDINATE[type+'_y_begin'], name)
+    if (sendersAddr is not None):
+        generator.drawString(ADDR_CORDINATE[type+'_x_begin'] , ADDR_CORDINATE[type+'_y_begin'], sendersAddr)
+
 def getNewLineCordinate(currentY):
     newX = CONTENT_X_BEGIN
     newY = currentY - (CONTENT_Y_INTERVAL + CONTENT_Y_FIX)
@@ -52,13 +59,23 @@ def resetCordinatesAndCounters():
     return CONTENT_X_BEGIN, CONTENT_Y_BEGIN, 1, 1
 
 args = processArgs()
+senders = args.senderName
+sendersAddr = args.senderAddr
+receivers = args.receiverName
+receiversAddr = args.receiverAddr
+cc = args.ccName
+ccAddr = args.ccAddr
 text = readMainText()
 
 generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE, LETTER_FORMAT_HEIGHT)
-generator.setFont(DEFAULT_FONT_PATH, 10)
-
-
 blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
+
+# write name and address
+generator.setFont(DEFAULT_FONT_PATH, 10)
+fillNameAndAddress(senders[0], sendersAddr, 's')
+fillNameAndAddress(receivers[0], receiversAddr, 'r')
+fillNameAndAddress(cc[0], ccAddr, 'c')
+
 generator.setFont(DEFAULT_FONT_PATH, 20)
 x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
 print 'parse content...'
@@ -78,8 +95,8 @@ for i in range(0, len(text)):
     word_counter = word_counter + 1
 generator.endThisPage()
 blank_letter_producer.pickIndividualPages([0])
-generator.save()
 blank_letter_producer.save()
+generator.save()
 
 print 'start merging...'
 merger = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, GENERATED_FINAL_LETTER_PATH)
