@@ -19,21 +19,21 @@ def processArgs():
                             nargs='+',
                             metavar='寄件人姓名')
     argParser.add_argument('--senderAddr',
-                            action='store',
+                            action='append',
                             metavar='寄件人詳細地址')
     argParser.add_argument('--receiverName',
                             action='append',
                             nargs='+',
                             metavar='收件人姓名')
     argParser.add_argument('--receiverAddr',
-                            action='store',
+                            action='append',
                             metavar='收件人詳細地址')
     argParser.add_argument('--ccName',
                             action='append',
                             nargs='+',
                             metavar='副本收件人姓名')
     argParser.add_argument('--ccAddr',
-                            action='store',
+                            action='append',
                             metavar='副本收件人詳細地址')
     return argParser.parse_args()
 
@@ -43,12 +43,13 @@ def readMainText():
     text_file.close()
     return text.decode('utf-8')
 
-def fillNameAndAddress(namelist, address, type):
-    for i in range(len(namelist)):
-        name = namelist[i]
-        generator.drawString(NAME_CORDINATE[type+'_x_begin'] + (i*NAME_CORDINATE[type+'_x_interval']), NAME_CORDINATE[type+'_y_begin'], name)
-    if (sendersAddr is not None):
-        generator.drawString(ADDR_CORDINATE[type+'_x_begin'] , ADDR_CORDINATE[type+'_y_begin'], address)
+def fillNameAndAddress(namelist, addresslist, type):
+    if namelist != None:
+        for i in range(len(namelist)):
+            name = namelist[0][i]
+            generator.drawString(NAME_CORDINATE[type+'_x_begin'] + (i*NAME_CORDINATE[type+'_x_interval']), NAME_CORDINATE[type+'_y_begin'], name)
+    if (addresslist is not None):
+        generator.drawString(ADDR_CORDINATE[type+'_x_begin'] , ADDR_CORDINATE[type+'_y_begin'], addresslist[0])
 
 def getNewLineCordinate(currentY):
     newX = CONTENT_X_BEGIN
@@ -72,9 +73,9 @@ blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_
 
 # write name and address
 generator.setFont(DEFAULT_FONT_PATH, 10)
-fillNameAndAddress(senders[0], sendersAddr, 's')
-fillNameAndAddress(receivers[0], receiversAddr, 'r')
-fillNameAndAddress(cc[0], ccAddr, 'c')
+fillNameAndAddress(senders, sendersAddr, 's')
+fillNameAndAddress(receivers, receiversAddr, 'r')
+fillNameAndAddress(cc, ccAddr, 'c')
 
 generator.setFont(DEFAULT_FONT_PATH, 20)
 x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
