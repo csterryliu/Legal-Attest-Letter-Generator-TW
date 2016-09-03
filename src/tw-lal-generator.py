@@ -37,8 +37,8 @@ def processArgs():
                             metavar='副本收件人詳細地址')
     return argParser.parse_args()
 
-def readMainText():
-    text_file = open(args.article_file, 'r')
+def readMainText(filepath):
+    text_file = open(filepath, 'r')
     text = text_file.read()
     text_file.close()
     return text.decode('utf-8')
@@ -66,7 +66,7 @@ receivers = args.receiverName
 receiversAddr = args.receiverAddr
 cc = args.ccName
 ccAddr = args.ccAddr
-text = readMainText()
+text = readMainText(args.article_file)
 
 generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE, LETTER_FORMAT_HEIGHT)
 blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
