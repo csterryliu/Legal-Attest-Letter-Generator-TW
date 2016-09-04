@@ -4,6 +4,9 @@ GENERATED_BLANK_LETTER_PATH = 'blank_letter.pdf'
 GENERATED_FINAL_LETTER_PATH = 'output.pdf'
 DEFAULT_FONT_PATH = '../res/TW-Kai-98_1.ttf'
 PDF_INCH = 72
+########################################################################
+# pre-defined cordinates of main article
+########################################################################
 LETTER_FORMAT_WIDE = 8.2677 * PDF_INCH
 LETTER_FORMAT_HEIGHT = 11.692 * PDF_INCH
 CONTENT_X_BEGIN = 1.27 * PDF_INCH
@@ -41,3 +44,17 @@ ADDR_CORDINATE = {
 }
 LETTER_LEFTMOST_BORDER = 7.80 * PDF_INCH
 SENDER_FIRST_LINE_LEFTMOST_BORDER = 7.10 * PDF_INCH
+
+########################################################################
+# pre-defined cordinates of additional information box
+########################################################################
+box_uppderLeft_x_y = (225, 764)
+box_uppderRight_x_y = (565, 764)
+quote_x_y = (235, 754)
+rect_x_y_w_h = (514.5, 738, 10, 12)
+rect_cht_x_y = (514.5, 741)
+detail_start = (300, 741)
+detail_y_interval = 20
+title_start = (235, 730)
+title_y_interval = 25
+cc_receiver_fix_x_y = (20, 5)
