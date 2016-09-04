@@ -37,6 +37,14 @@ def processArgs():
                             metavar='副本收件人詳細地址')
     return argParser.parse_args()
 
+def isOnlyOneNameOrAddress(namelist, addresslist):
+    ret_value = True
+    if namelist is not None:
+        ret_value = ret_value and (len(namelist) == 1)
+    if addresslist is not None:
+        ret_value = ret_value and (len(addresslist) == 1)
+    return ret_value
+
 def readMainText(filepath):
     text_file = open(filepath, 'r')
     text = text_file.read()
@@ -71,11 +79,13 @@ text = readMainText(args.article_file)
 generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
 blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
 
-# write name and address
-generator.setFont(DEFAULT_FONT_PATH, 10)
-fillNameAndAddress(senders, sendersAddr, 's')
-fillNameAndAddress(receivers, receiversAddr, 'r')
-fillNameAndAddress(cc, ccAddr, 'c')
+# write name and address if one page is enough
+isOnePageEnough = isOnlyOneNameOrAddress(senders, sendersAddr) and isOnlyOneNameOrAddress(receivers, receiversAddr) and isOnlyOneNameOrAddress(cc, ccAddr)
+if isOnePageEnough:
+    generator.setFont(DEFAULT_FONT_PATH, 10)
+    fillNameAndAddress(senders, sendersAddr, 's')
+    fillNameAndAddress(receivers, receiversAddr, 'r')
+    fillNameAndAddress(cc, ccAddr, 'c')
 
 generator.setFont(DEFAULT_FONT_PATH, 20)
 x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
