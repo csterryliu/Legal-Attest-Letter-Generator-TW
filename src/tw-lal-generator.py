@@ -47,17 +47,17 @@ def fillNameAndAddress(namelist, addresslist, type):
     if namelist != None:
         for i in range(len(namelist)):
             name = namelist[0][i]
-            generator.drawString(NAME_CORDINATE[type+'_x_begin'] + (i*NAME_CORDINATE[type+'_x_interval']), NAME_CORDINATE[type+'_y_begin'], name)
+            generator.drawString(NAME_CORDINATE[type+'_x_y_begin'][0] + (i*NAME_CORDINATE[type+'_x_y_interval'][0]), NAME_CORDINATE[type+'_x_y_begin'][1], name)
     if (addresslist is not None):
-        generator.drawString(ADDR_CORDINATE[type+'_x_begin'] , ADDR_CORDINATE[type+'_y_begin'], addresslist[0])
+        generator.drawString(ADDR_CORDINATE[type+'_x_y_begin'][0] , ADDR_CORDINATE[type+'_x_y_begin'][1], addresslist[0])
 
 def getNewLineCordinate(currentY):
-    newX = CONTENT_X_BEGIN
-    newY = currentY - (CONTENT_Y_INTERVAL + CONTENT_Y_FIX)
+    newX = CONTENT_X_Y_BEGIN[0]
+    newY = currentY - (CONTENT_X_Y_INTERVAL[1] + CONTENT_X_Y_FIX[1])
     return newX, newY
 
 def resetCordinatesAndCounters():
-    return CONTENT_X_BEGIN, CONTENT_Y_BEGIN, 1, 1
+    return CONTENT_X_Y_BEGIN[0], CONTENT_X_Y_BEGIN[1], 1, 1
 
 args = processArgs()
 senders = args.senderName
@@ -68,7 +68,7 @@ cc = args.ccName
 ccAddr = args.ccAddr
 text = readMainText(args.article_file)
 
-generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE, LETTER_FORMAT_HEIGHT)
+generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
 blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
 
 # write name and address
@@ -92,7 +92,7 @@ for i in range(0, len(text)):
         blank_letter_producer.pickIndividualPages([0])
         x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
     generator.drawString(x_begin, y_begin, text[i])
-    x_begin += (CONTENT_X_INTERVAL - CONTENT_X_FIX)
+    x_begin += (CONTENT_X_Y_INTERVAL[0] - CONTENT_X_Y_FIX[0])
     word_counter = word_counter + 1
 generator.endThisPage()
 blank_letter_producer.pickIndividualPages([0])
