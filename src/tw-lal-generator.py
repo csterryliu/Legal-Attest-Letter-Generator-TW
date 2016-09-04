@@ -51,7 +51,7 @@ def readMainText(filepath):
     text_file.close()
     return text.decode('utf-8')
 
-def fillNameAndAddress(namelist, addresslist, type):
+def fillNameAndAddressOnFirstPage(namelist, addresslist, type):
     if namelist != None:
         for i in range(len(namelist)):
             name = namelist[0][i]
@@ -83,9 +83,9 @@ blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_
 isOnePageEnough = isOnlyOneNameOrAddress(senders, sendersAddr) and isOnlyOneNameOrAddress(receivers, receiversAddr) and isOnlyOneNameOrAddress(cc, ccAddr)
 if isOnePageEnough:
     generator.setFont(DEFAULT_FONT_PATH, 10)
-    fillNameAndAddress(senders, sendersAddr, 's')
-    fillNameAndAddress(receivers, receiversAddr, 'r')
-    fillNameAndAddress(cc, ccAddr, 'c')
+    fillNameAndAddressOnFirstPage(senders, sendersAddr, 's')
+    fillNameAndAddressOnFirstPage(receivers, receiversAddr, 'r')
+    fillNameAndAddressOnFirstPage(cc, ccAddr, 'c')
 
 generator.setFont(DEFAULT_FONT_PATH, 20)
 x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
