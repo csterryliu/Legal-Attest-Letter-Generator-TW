@@ -137,9 +137,9 @@ def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
 def fillNameAndAddressOnFirstPage(namelist, addresslist, type):
     if len(namelist) == 1:
         allName = ' '.join(namelist[0]).decode('utf-8')
-        generator.drawString(NAME_CORDINATE[type+'_x_y_begin'][0], NAME_CORDINATE[type+'_x_y_begin'][1], allName)
+        generator.drawString(NAME_COORDINATE[type+'_x_y_begin'][0], NAME_COORDINATE[type+'_x_y_begin'][1], allName)
     if len(addresslist) == 1:
-        generator.drawString(ADDR_CORDINATE[type+'_x_y_begin'][0] , ADDR_CORDINATE[type+'_x_y_begin'][1], addresslist[0])
+        generator.drawString(ADDR_COORDINATE[type+'_x_y_begin'][0] , ADDR_COORDINATE[type+'_x_y_begin'][1], addresslist[0])
 
 ##############################
 ### Main program goes here
@@ -184,7 +184,7 @@ for i in range(pageMerge.getSrcTotalPage()):
     pageMerge.mergeSrcPageToDestPage(i, i)
 pageMerge.save()
 
-#remove(GENERATED_TEXT_PATH)
-#remove(GENERATED_BLANK_LETTER_PATH)
+remove(GENERATED_TEXT_PATH)
+remove(GENERATED_BLANK_LETTER_PATH)
 
 print 'Done. Filename: ' + outputFileName
