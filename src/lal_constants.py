@@ -34,13 +34,13 @@ SENDER_FIRST_LINE_LEFTMOST_BORDER = 7.10 * PDF_INCH
 ########################################################################
 # pre-defined cordinates of additional information box
 ########################################################################
-box_uppderLeft_x_y = (225, 764)
-box_uppderRight_x_y = (565, 764)
-quote_x_y = (235, 754)
-rect_x_y_w_h = (514.5, 738, 10, 12)
-cht_in_rect_x_y = (514.5, 741)
-detail_start = (300, 741)
-detail_y_interval = 20
-title_start = (235, 730)
-title_y_interval = 10
-cc_receiver_fix_x_y = (20, 5)
+box_uppderLeft_x_y = (3.125 * PDF_INCH, 10.611 * PDF_INCH)
+box_uppderRight_x_y = (7.847 * PDF_INCH, 10.611 * PDF_INCH)
+quote_x_y = (3.264 * PDF_INCH, 10.472 * PDF_INCH)
+rect_x_y_w_h = (7.146 * PDF_INCH, 10.25 * PDF_INCH, 0.139 * PDF_INCH, 0.167 * PDF_INCH)
+cht_in_rect_x_y = (7.146 * PDF_INCH, 10.292 * PDF_INCH)
+detail_start = (4.167 * PDF_INCH, 10.292 * PDF_INCH)
+detail_y_interval = 0.278 * PDF_INCH
+title_start = (3.264 * PDF_INCH, 10.139 * PDF_INCH)
+title_y_interval = 0.139 * PDF_INCH
+cc_receiver_fix_x_y = (0.278 * PDF_INCH, 0.069 * PDF_INCH)

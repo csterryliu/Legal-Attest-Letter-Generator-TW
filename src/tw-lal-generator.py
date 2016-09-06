@@ -184,7 +184,7 @@ for i in range(pageMerge.getSrcTotalPage()):
     pageMerge.mergeSrcPageToDestPage(i, i)
 pageMerge.save()
 
-remove(GENERATED_TEXT_PATH)
-remove(GENERATED_BLANK_LETTER_PATH)
+#remove(GENERATED_TEXT_PATH)
+#remove(GENERATED_BLANK_LETTER_PATH)
 
 print 'Done. Filename: ' + outputFileName
