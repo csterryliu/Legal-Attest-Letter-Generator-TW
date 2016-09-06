@@ -64,21 +64,21 @@ def readMainArticle(filepath):
 
 def parseMainArticle(painter, mainText):
     print 'Parse main article...'
-    x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
+    x_begin, y_begin, line_counter, char_counter = resetCordinatesAndCounters()
     for i in range(0, len(mainText)):
-        if text[i] == '\n' or (word_counter > CONTENT_MAX_WORD_PER_LINE):
+        if text[i] == '\n' or (char_counter > CONTENT_MAX_CHARACTER_PER_LINE):
             x_begin, y_begin = getNewLineCordinate(y_begin)
             line_counter = line_counter + 1
-            word_counter = 1
+            char_counter = 1
             if text[i] == '\n':
                 continue
         if line_counter > CONTENT_MAX_LINE_PER_PAGE:
             painter.endThisPage()
             blank_letter_producer.pickIndividualPages([0])
-            x_begin, y_begin, line_counter, word_counter = resetCordinatesAndCounters()
+            x_begin, y_begin, line_counter, char_counter = resetCordinatesAndCounters()
         painter.drawString(x_begin, y_begin, text[i])
         x_begin += (CONTENT_X_Y_INTERVAL[0] - CONTENT_X_Y_FIX[0])
-        word_counter = word_counter + 1
+        char_counter = char_counter + 1
 
 def getNewLineCordinate(currentY):
     newX = CONTENT_X_Y_BEGIN[0]
