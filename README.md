@@ -16,8 +16,8 @@
 - 可免費離線使用  
   You can use it offline for free.
 
-- **開源：程式實作完全開放閱覽，可了解資料如何被利用，無隱私問題，過程完全透明  
-  Open source: You are free to read the code. You can realize how your data is used. There's no privacy issue. Totally transparent.**
+- **開源：程式實作完全開放閱覽，無隱私問題，過程完全透明  
+  Open source: You are free to read the code. There's no privacy issue. The process is totally transparent.**
 
 ## Prerequisite ##
 Download and install [Python 2.7](https://www.python.org/downloads/) to your computer
