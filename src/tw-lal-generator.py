@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import argparse
+from os import remove
 import pdfpainter
 import pdfpage
 from lal_constants import *
@@ -176,5 +177,8 @@ pageMerge = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PAT
 for i in range(pageMerge.getSrcTotalPage()):
     pageMerge.mergeSrcPageToDestPage(i, i)
 pageMerge.save()
+
+remove(GENERATED_TEXT_PATH)
+remove(GENERATED_BLANK_LETTER_PATH)
 
 print 'Finish. Filename: ' + outputFileName
