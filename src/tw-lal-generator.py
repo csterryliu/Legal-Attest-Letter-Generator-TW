@@ -17,31 +17,37 @@ def processArgs():
     argParser.add_argument('--senderName',
                             action='append',
                             nargs='+',
-                            metavar='寄件人姓名')
+                            metavar='寄件人姓名',
+                            default=[])
     argParser.add_argument('--senderAddr',
                             action='append',
-                            metavar='寄件人詳細地址')
+                            metavar='寄件人詳細地址',
+                            default=[])
     argParser.add_argument('--receiverName',
                             action='append',
                             nargs='+',
-                            metavar='收件人姓名')
+                            metavar='收件人姓名',
+                            default=[])
     argParser.add_argument('--receiverAddr',
                             action='append',
-                            metavar='收件人詳細地址')
+                            metavar='收件人詳細地址',
+                            default=[])
     argParser.add_argument('--ccName',
                             action='append',
                             nargs='+',
-                            metavar='副本收件人姓名')
+                            metavar='副本收件人姓名',
+                            default=[])
     argParser.add_argument('--ccAddr',
                             action='append',
-                            metavar='副本收件人詳細地址')
+                            metavar='副本收件人詳細地址',
+                            default=[])
     return argParser.parse_args()
 
 def isOnlyOneNameOrAddress(namelist, addresslist):
     ret_value = True
-    if namelist is not None:
+    if len(namelist) != 0:
         ret_value = ret_value and (len(namelist) == 1)
-    if addresslist is not None:
+    if len(addresslist) != 0:
         ret_value = ret_value and (len(addresslist) == 1)
     return ret_value
 
@@ -52,12 +58,33 @@ def readMainText(filepath):
     return text.decode('utf-8')
 
 def fillNameAndAddressOnFirstPage(namelist, addresslist, type):
-    if namelist != None:
-        for i in range(len(namelist)):
+    if len(namelist) == 1:
+        for i in range(len(namelist[0])):
             name = namelist[0][i]
             generator.drawString(NAME_CORDINATE[type+'_x_y_begin'][0] + (i*NAME_CORDINATE[type+'_x_y_interval'][0]), NAME_CORDINATE[type+'_x_y_begin'][1], name)
-    if (addresslist is not None):
+    if len(addresslist) == 1:
         generator.drawString(ADDR_CORDINATE[type+'_x_y_begin'][0] , ADDR_CORDINATE[type+'_x_y_begin'][1], addresslist[0])
+
+def fillNameAndAddressOnAddtionalPage(x_begin, y_begin, namelist, addresslist):
+    max_count = max(len(namelist), len(addresslist))
+    print 'max_count: ' + str(max_count)
+    if max_count == 0:
+        generator.drawString(x_begin, y_begin, u'姓名：')
+        y_begin -= detail_y_interval
+        generator.drawString(x_begin, y_begin, u'詳細地址：')
+        y_begin -= detail_y_interval
+
+    while max_count > 0:
+        allName = ' '.join(namelist[-max_count]).decode('utf-8') if max_count <= len(namelist) else ''
+        generator.drawString(x_begin, y_begin, u'姓名：' + allName)
+        y_begin -= detail_y_interval
+        address = addresslist[-max_count].decode('utf-8') if len(addresslist) <= len(addresslist) else ''
+        generator.drawString(x_begin, y_begin, u'詳細地址：' + address)
+        max_count -= 1
+        y_begin -= detail_y_interval
+
+    return y_begin
+
 
 def getNewLineCordinate(currentY):
     newX = CONTENT_X_Y_BEGIN[0]
@@ -106,6 +133,37 @@ for i in range(0, len(text)):
     word_counter = word_counter + 1
 generator.endThisPage()
 blank_letter_producer.pickIndividualPages([0])
+
+if isOnePageEnough is False:
+    generator.setFont(DEFAULT_FONT_PATH, 8)
+    generator.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1], box_uppderRight_x_y[0], box_uppderRight_x_y[1])
+    generator.drawString(quote_x_y[0], quote_x_y[1], u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
+    generator.drawRect(rect_x_y_w_h[0], rect_x_y_w_h[1], rect_x_y_w_h[2], rect_x_y_w_h[3])
+    generator.setFont(DEFAULT_FONT_PATH, 10)
+    generator.drawString(cht_in_rect_x_y[0], cht_in_rect_x_y[1], u'印')
+
+    generator.drawString(title_start[0], title_start[1], u'一、寄件人')
+    x_begin = detail_start[0]
+    y_begin = detail_start[1]
+    y_begin = fillNameAndAddressOnAddtionalPage(x_begin, y_begin, senders, sendersAddr)
+
+    y_begin -= title_y_interval
+    generator.drawString(title_start[0], y_begin, u'二、收件人')
+    y_begin = fillNameAndAddressOnAddtionalPage(x_begin, y_begin, receivers, receiversAddr)
+
+    y_begin -= title_y_interval
+    generator.drawString(title_start[0], y_begin, u'三、')
+    generator.drawString(title_start[0]+cc_receiver_fix_x_y[0], y_begin+cc_receiver_fix_x_y[1], u'副 本')
+    generator.drawString(title_start[0]+cc_receiver_fix_x_y[0], y_begin-cc_receiver_fix_x_y[1], u'收件人')
+    y_begin = fillNameAndAddressOnAddtionalPage(x_begin, y_begin, cc, ccAddr)
+
+    generator.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1], box_uppderLeft_x_y[0], y_begin)  # left
+    generator.drawLine(box_uppderLeft_x_y[0], y_begin, box_uppderRight_x_y[0], y_begin)  # buttom
+    generator.drawLine(box_uppderRight_x_y[0], box_uppderRight_x_y[1], box_uppderRight_x_y[0], y_begin)  # right
+
+    generator.endThisPage()
+
+
 blank_letter_producer.save()
 generator.save()
 

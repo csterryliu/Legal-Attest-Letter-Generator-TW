@@ -25,6 +25,12 @@ class PDFPainter:
     def drawString(self, x, y, text):
         self.__canvas.drawString(x, y, text)
 
+    def drawLine(self, x_begin, y_begin, x_end, y_end):
+        self.__canvas.line(x_begin, y_begin, x_end, y_end)
+
+    def drawRect(self, x, y, width, height):
+        self.__canvas.rect(x, y, width, height)
+
     def endThisPage(self):
         self.__canvas.showPage()
         # keep the font setting

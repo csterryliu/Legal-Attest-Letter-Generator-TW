@@ -19,6 +19,9 @@ class PDFPagePick:
             else:
                 print ('pageNum %d doesn''t exist. Pass' % pageNum)
 
+    def insertBlankPage(self):
+        self.__output.addBlankPage()
+
     def save(self):
         outputStream = open(self.__outputFileName, 'wb')
         self.__output.write(outputStream)
