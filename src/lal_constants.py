@@ -15,9 +15,9 @@ CONTENT_MAX_LINE_PER_PAGE = 10
 NAME_COORDINATE = {
 's_x_y_begin': (4.60 * PDF_INCH, 10.27 * PDF_INCH),
 's_x_y_interval': (0.48 * PDF_INCH, 0.15 * PDF_INCH),
-'r_x_y_begin': (4.60 * PDF_INCH, 9.65 * PDF_INCH),
+'r_x_y_begin': (4.60 * PDF_INCH, 9.66 * PDF_INCH),
 'r_x_y_interval': (0.48 * PDF_INCH, 0.15 * PDF_INCH),
-'c_x_y_begin': (4.60 * PDF_INCH, 9.02 * PDF_INCH),
+'c_x_y_begin': (4.60 * PDF_INCH, 9.06 * PDF_INCH),
 'c_x_y_interval': (0.48 * PDF_INCH, 0),
 }
 ADDR_COORDINATE = {
@@ -25,7 +25,7 @@ ADDR_COORDINATE = {
 's_y_interval': 0.15 * PDF_INCH,
 'r_x_y_begin': (4.72 * PDF_INCH, 9.32 * PDF_INCH),
 'r_y_interval': 0.15 * PDF_INCH,
-'c_x_y_begin': (4.72 * PDF_INCH, 8.83 * PDF_INCH),
+'c_x_y_begin': (4.72 * PDF_INCH, 8.84 * PDF_INCH),
 'c_y_interval': 0
 }
 LETTER_LEFTMOST_BORDER = 7.80 * PDF_INCH
