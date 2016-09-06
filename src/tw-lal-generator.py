@@ -44,7 +44,7 @@ def processArgs():
                             default=[])
     argParser.add_argument('--outputFileName',
                             action='store',
-                            metavar='指定輸出檔案名稱',
+                            metavar='輸出之檔案名稱',
                             default='output.pdf')
     return argParser.parse_args()
 
