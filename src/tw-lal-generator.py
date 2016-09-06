@@ -90,7 +90,7 @@ def resetCordinatesAndCounters():
 
 def drawInfoBox(painter):
     painter.setFont(DEFAULT_FONT_PATH, 8)
-    painter.drawString(cut_info_x_y[0], cut_info_x_y[1], u'[請自行剪下]')
+    painter.drawString(cut_info_x_y[0], cut_info_x_y[1], u'[請自行剪下貼上]')
     painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1], box_uppderRight_x_y[0], box_uppderRight_x_y[1])
     painter.drawString(quote_x_y[0], quote_x_y[1], u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
     painter.drawRect(rect_x_y_w_h[0], rect_x_y_w_h[1], rect_x_y_w_h[2], rect_x_y_w_h[3])
@@ -124,13 +124,12 @@ def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
         generator.drawString(x_begin, y_begin, u'詳細地址：')
         y_begin -= detail_y_interval
 
-    while max_count > 0:
-        allName = ' '.join(namelist[-max_count]).decode('utf-8') if max_count <= len(namelist) else ''
+    for i in range(max_count):
+        allName = ' '.join(namelist[i]).decode('utf-8') if i <= len(namelist)-1 else ''
         generator.drawString(x_begin, y_begin, u'姓名：' + allName)
         y_begin -= detail_y_interval
-        address = addresslist[-max_count].decode('utf-8') if len(addresslist) <= len(addresslist) else ''
+        address = addresslist[i].decode('utf-8') if i <= len(addresslist)-1 else ''
         generator.drawString(x_begin, y_begin, u'詳細地址：' + address)
-        max_count -= 1
         y_begin -= detail_y_interval
 
     return y_begin
