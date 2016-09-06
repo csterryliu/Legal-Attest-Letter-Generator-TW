@@ -12,6 +12,7 @@
 
 - 可排版：只需用純文字編輯器打好內容並排版，便會反應至信函上，使內容不至於擁擠  
   Support indentation: The only thing you have to do is typing your main article and indenting them on a text editor. The output will reflect your indentation so that the main article won't look crowded.  
+  
 - 可免費離線使用 You can use it offline for free.
 
 - **Open Source：程式實作完全開放閱覽，可了解資料如何被利用，無隱私問題，過程完全透明  
