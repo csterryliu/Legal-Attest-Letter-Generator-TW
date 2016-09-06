@@ -90,6 +90,7 @@ def resetCordinatesAndCounters():
 
 def drawInfoBox(painter):
     painter.setFont(DEFAULT_FONT_PATH, 8)
+    painter.drawString(cut_info_x_y[0], cut_info_x_y[1], u'[請自行剪下]')
     painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1], box_uppderRight_x_y[0], box_uppderRight_x_y[1])
     painter.drawString(quote_x_y[0], quote_x_y[1], u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
     painter.drawRect(rect_x_y_w_h[0], rect_x_y_w_h[1], rect_x_y_w_h[2], rect_x_y_w_h[3])

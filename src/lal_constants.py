@@ -36,6 +36,7 @@ SENDER_FIRST_LINE_LEFTMOST_BORDER = 7.10 * PDF_INCH
 ########################################################################
 box_uppderLeft_x_y = (3.125 * PDF_INCH, 10.611 * PDF_INCH)
 box_uppderRight_x_y = (7.847 * PDF_INCH, 10.611 * PDF_INCH)
+cut_info_x_y = (5.111 * PDF_INCH, 10.750 * PDF_INCH)
 quote_x_y = (3.264 * PDF_INCH, 10.472 * PDF_INCH)
 rect_x_y_w_h = (7.146 * PDF_INCH, 10.25 * PDF_INCH, 0.139 * PDF_INCH, 0.167 * PDF_INCH)
 cht_in_rect_x_y = (7.146 * PDF_INCH, 10.292 * PDF_INCH)
