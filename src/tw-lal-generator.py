@@ -41,6 +41,10 @@ def processArgs():
                             action='append',
                             metavar='副本收件人詳細地址',
                             default=[])
+    argParser.add_argument('--outputFileName',
+                            action='store',
+                            metavar='指定輸出檔案名稱',
+                            default='output.pdf')
     return argParser.parse_args()
 
 def isOnlyOneNameOrAddress(namelist, addresslist):
@@ -67,7 +71,6 @@ def fillNameAndAddressOnFirstPage(namelist, addresslist, type):
 
 def fillNameAndAddressOnAddtionalPage(x_begin, y_begin, namelist, addresslist):
     max_count = max(len(namelist), len(addresslist))
-    print 'max_count: ' + str(max_count)
     if max_count == 0:
         generator.drawString(x_begin, y_begin, u'姓名：')
         y_begin -= detail_y_interval
@@ -102,6 +105,7 @@ receiversAddr = args.receiverAddr
 cc = args.ccName
 ccAddr = args.ccAddr
 text = readMainText(args.article_file)
+outputFileName = args.outputFileName
 
 generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
 blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
@@ -162,15 +166,15 @@ if isOnePageEnough is False:
     generator.drawLine(box_uppderRight_x_y[0], box_uppderRight_x_y[1], box_uppderRight_x_y[0], y_begin)  # right
 
     generator.endThisPage()
-
+    blank_letter_producer.insertBlankPage()
 
 blank_letter_producer.save()
 generator.save()
 
 print 'start merging...'
-merger = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, GENERATED_FINAL_LETTER_PATH)
-for i in range(merger.getSrcTotalPage()):
-    merger.mergeSrcPageToDestPage(i, i)
-merger.save()
+pageMerge = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, outputFileName)
+for i in range(pageMerge.getSrcTotalPage()):
+    pageMerge.mergeSrcPageToDestPage(i, i)
+pageMerge.save()
 
-print 'Finish. Filename: ' + GENERATED_FINAL_LETTER_PATH
+print 'Finish. Filename: ' + outputFileName
