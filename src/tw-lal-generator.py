@@ -2,49 +2,52 @@
 # -*- coding: utf-8 -*-
 import argparse
 from os import remove
+from os import name as os_type
 import pdfpainter
 import pdfpage
 from lal_constants import *
 
+encode_name = 'utf-8' if os_type is 'posix' else 'big5'
+
 def processArgs():
-    argParser = argparse.ArgumentParser(description='台灣郵局存證信函產生器',
+    argParser = argparse.ArgumentParser(description=u'台灣郵局存證信函產生器'.encode(encode_name),
                                         add_help=False)
     argParser.add_argument('--help',
                             action='help',
-                            help='顯示使用說明')
+                            help=u'顯示使用說明'.encode(encode_name))
     argParser.add_argument('article_file',
                             action='store',
-                            help='存證信函全文之純文字檔路徑')
+                            help=u'存證信函全文之純文字檔路徑'.encode(encode_name))
     argParser.add_argument('--senderName',
                             action='append',
                             nargs='+',
-                            metavar='寄件人姓名',
+                            metavar=u'寄件人姓名'.encode(encode_name),
                             default=[])
     argParser.add_argument('--senderAddr',
                             action='append',
-                            metavar='寄件人詳細地址',
+                            metavar=u'寄件人詳細地址'.encode(encode_name),
                             default=[])
     argParser.add_argument('--receiverName',
                             action='append',
                             nargs='+',
-                            metavar='收件人姓名',
+                            metavar=u'收件人姓名'.encode(encode_name),
                             default=[])
     argParser.add_argument('--receiverAddr',
                             action='append',
-                            metavar='收件人詳細地址',
+                            metavar=u'收件人詳細地址'.encode(encode_name),
                             default=[])
     argParser.add_argument('--ccName',
                             action='append',
                             nargs='+',
-                            metavar='副本收件人姓名',
+                            metavar=u'副本收件人姓名'.encode(encode_name),
                             default=[])
     argParser.add_argument('--ccAddr',
                             action='append',
-                            metavar='副本收件人詳細地址',
+                            metavar=u'副本收件人詳細地址'.encode(encode_name),
                             default=[])
     argParser.add_argument('--outputFileName',
                             action='store',
-                            metavar='輸出之檔案名稱',
+                            metavar=u'輸出之檔案名稱'.encode(encode_name),
                             default='output.pdf')
     return argParser.parse_args()
 
@@ -127,10 +130,10 @@ def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
         y_begin -= detail_y_interval
 
     for i in range(max_count):
-        allName = ' '.join(namelist[i]).decode('utf-8') if i <= len(namelist)-1 else ''
+        allName = ' '.join(namelist[i]).decode(encode_name) if i <= len(namelist)-1 else ''
         generator.drawString(x_begin, y_begin, u'姓名：' + allName)
         y_begin -= detail_y_interval
-        address = addresslist[i].decode('utf-8') if i <= len(addresslist)-1 else ''
+        address = addresslist[i].decode(encode_name) if i <= len(addresslist)-1 else ''
         generator.drawString(x_begin, y_begin, u'詳細地址：' + address)
         y_begin -= detail_y_interval
 
@@ -138,10 +141,10 @@ def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
 
 def fillNameAndAddressOnFirstPage(namelist, addresslist, type):
     if len(namelist) == 1:
-        allName = ' '.join(namelist[0]).decode('utf-8')
+        allName = ' '.join(namelist[0]).decode(encode_name)
         generator.drawString(NAME_COORDINATE[type+'_x_y_begin'][0], NAME_COORDINATE[type+'_x_y_begin'][1], allName)
     if len(addresslist) == 1:
-        generator.drawString(ADDR_COORDINATE[type+'_x_y_begin'][0] , ADDR_COORDINATE[type+'_x_y_begin'][1], addresslist[0])
+        generator.drawString(ADDR_COORDINATE[type+'_x_y_begin'][0] , ADDR_COORDINATE[type+'_x_y_begin'][1], addresslist[0].decode(encode_name))
 
 ##############################
 ### Main program goes here
