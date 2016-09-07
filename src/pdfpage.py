@@ -8,7 +8,7 @@ class PDFPagePick:
     Select any page you want and then organize them into a new PDF file
     """
     def __init__(self, src, outputFileName):
-        self.__src = PdfFileReader(open(src, 'rb'))
+        self.__src = PdfFileReader(src)
         self.__output = PdfFileWriter()
         self.__outputFileName = outputFileName
 
@@ -39,8 +39,8 @@ class PDFPageMerge:
     It merges 2 pdf files into a new one.
     """
     def __init__(self, src, dest, outputFileName):
-        self.__src = PdfFileReader(open(src, 'rb'))
-        self.__dest = PdfFileReader(open(dest, 'rb'))
+        self.__src = PdfFileReader(src)
+        self.__dest = PdfFileReader(dest)
         self.__outputFileName = outputFileName
         self.__output = PdfFileWriter()
 
