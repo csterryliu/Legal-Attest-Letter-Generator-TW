@@ -20,7 +20,7 @@
   Open source: You are free to read the code. No privacy issue. The process is totally transparent.
 
 ## Prerequisite ##
-Please read [Wiki](./wiki/)
+Please read [Wiki](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW/wiki).
 
 ## Usage ##
 ```
