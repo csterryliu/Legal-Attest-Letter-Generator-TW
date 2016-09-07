@@ -154,8 +154,6 @@ receiversAddr = args.receiverAddr
 cc = args.ccName
 ccAddr = args.ccAddr
 text = readMainArticle(args.article_file)
-if text[0] == u'\ufeff':
-    print 'ok'
 outputFileName = args.outputFileName
 
 generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
