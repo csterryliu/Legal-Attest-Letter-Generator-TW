@@ -3,9 +3,9 @@
 import argparse
 from os import remove
 from os import name as os_type
-import pdfpainter
-import pdfpage
-from lal_constants import *
+from lal_modules import pdfpage
+from lal_modules import pdfpainter
+from lal_modules.constants import *
 
 encode_name = 'utf-8' if os_type is 'posix' else 'big5'
 
