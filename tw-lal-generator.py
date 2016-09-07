@@ -67,7 +67,7 @@ def readMainArticle(filepath):
     text = text.lstrip('\xef\xbb\xbf')
     return text.decode('utf-8')
 
-def parseMainArticle(painter, mainText):
+def parseMainArticle(painter, pagePick, mainText):
     print 'Parse main article...'
     x_begin, y_begin, line_counter, char_counter = resetCordinatesAndCounters()
     for i in range(0, len(mainText)):
@@ -79,11 +79,13 @@ def parseMainArticle(painter, mainText):
                 continue
         if line_counter > CONTENT_MAX_LINE_PER_PAGE:
             painter.endThisPage()
-            blank_letter_producer.pickIndividualPages([0])
+            pagePick.pickIndividualPages([0])
             x_begin, y_begin, line_counter, char_counter = resetCordinatesAndCounters()
         painter.drawString(x_begin, y_begin, text[i])
         x_begin += (CONTENT_X_Y_INTERVAL[0] - CONTENT_X_Y_FIX[0])
         char_counter = char_counter + 1
+    generator.endThisPage()
+    pagePick.pickIndividualPages([0])
 
 def getNewLineCordinate(currentY):
     newX = CONTENT_X_Y_BEGIN[0]
@@ -171,9 +173,7 @@ if onePageIsEnough:
     fillNameAndAddressOnFirstPage(cc, ccAddr, 'c')
 
 generator.setFont(DEFAULT_FONT_PATH, 20)
-parseMainArticle(generator, text)
-generator.endThisPage()
-blank_letter_producer.pickIndividualPages([0])
+parseMainArticle(generator, blank_letter_producer, text)
 
 if onePageIsEnough is False:
     drawInfoBox(generator)
