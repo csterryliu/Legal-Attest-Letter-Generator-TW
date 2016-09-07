@@ -60,6 +60,8 @@ def readMainArticle(filepath):
     text_file = open(filepath, 'r')
     text = text_file.read()
     text_file.close()
+    # In case the user insists on using Notepad of Windows, remove BOM
+    text = text.lstrip('\xef\xbb\xbf')
     return text.decode('utf-8')
 
 def parseMainArticle(painter, mainText):
@@ -152,6 +154,8 @@ receiversAddr = args.receiverAddr
 cc = args.ccName
 ccAddr = args.ccAddr
 text = readMainArticle(args.article_file)
+if text[0] == u'\ufeff':
+    print 'ok'
 outputFileName = args.outputFileName
 
 generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
