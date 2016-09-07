@@ -19,7 +19,7 @@
 - 開源：程式實作完全開放閱覽，無隱私問題，過程完全透明  
   Open source: You are free to read the code. No privacy issue. The process is totally transparent.
 
-## Prerequisite ##
+## How to Start ##
 Please read [Wiki](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW/wiki).
 
 ## Usage ##
