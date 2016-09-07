@@ -157,7 +157,7 @@ receiversAddr = args.receiverAddr
 cc = args.ccName
 ccAddr = args.ccAddr
 text = readMainArticle(args.article_file)
-outputFileName = args.outputFileName.decode(codec_name)
+outputFileName = args.outputFileName
 
 generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
 blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
