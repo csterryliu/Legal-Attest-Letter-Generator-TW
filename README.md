@@ -1,5 +1,6 @@
 # Legal Attest Letter Generator - Taiwan #
-台灣郵局存證信函產生器 (PDF 格式)。A tool for creating a legal attest letter of Taiwan - in PDF format.
+台灣郵局存證信函產生器 (PDF 格式)。  
+A tool for creating a legal attest letter of Taiwan - in PDF format.
 
 ![](./img/sample.png)
 
@@ -19,13 +20,10 @@
 - 開源：程式實作完全開放閱覽，無隱私問題，過程完全透明  
   Open source: You are free to read the code. No privacy issue. The process is totally transparent.
 
-## How to Start ##
-Please read [Wiki](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW/wiki/事前準備).
+## How to Use It ##
+Please read [Wiki](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW/wiki/).
 
-## How to Use ##
-Please read [Wiki](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW/wiki/如何使用本程式).
-
-Basically, it is:
+## Usage ##
 ```
 tw-lal-generator.py 信函正文純文字檔路徑 [--senderName 寄件人姓名 [寄件人姓名 ...]] [--senderAddr 寄件人詳細地址] [--receiverName 收件人姓名 [收件人姓名 ...]] [--receiverAddr 收件人詳細地址] [--ccName 副本收件人姓名 [副本收件人姓名 ...]] [--ccAddr 副本收件人詳細地址] [--outputFileName 輸出之檔案名稱] [--help]
 ```
