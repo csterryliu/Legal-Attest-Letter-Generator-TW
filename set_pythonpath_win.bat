@@ -1,6 +1,6 @@
 @echo off
 
-src\tw-lal-generator.py --help
+tw-lal-generator.py --help
 
 echo %cd%
 
