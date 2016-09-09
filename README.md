@@ -20,7 +20,7 @@ A tool for creating a legal attest letter of Taiwan - in PDF format.
 - 開源：程式實作完全開放閱覽，無隱私問題，過程完全透明  
   Open source: You are free to read the code. No privacy issue. The process is totally transparent.
 
-## How to Use It ##
+## How To Use It ##
 Please read [Wiki](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW/wiki/).
 
 ## Dependency ##
