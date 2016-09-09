@@ -23,12 +23,6 @@ A tool for creating a legal attest letter of Taiwan - in PDF format.
 ## How to Use It ##
 Please read [Wiki](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW/wiki/).
 
-## Usage ##
-```
-tw-lal-generator.py 信函正文純文字檔路徑 [--senderName 寄件人姓名 [寄件人姓名 ...]] [--senderAddr 寄件人詳細地址] [--receiverName 收件人姓名 [收件人姓名 ...]] [--receiverAddr 收件人詳細地址] [--ccName 副本收件人姓名 [副本收件人姓名 ...]] [--ccAddr 副本收件人詳細地址] [--outputFileName 輸出之檔案名稱] [--help]
-```
-
-
 ## Dependency ##
 - [PyPDF2 1.26](https://github.com/mstamy2/PyPDF2)  
 - [reportlab 3.3.0](https://bitbucket.org/rptlab/reportlab)
