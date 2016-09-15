@@ -64,7 +64,7 @@ def readMainArticle(filepath):
     text_file.close()
     # In case the user insists on using Notepad of Windows, remove BOM
     text = text.lstrip('\xef\xbb\xbf')
-    return text.decode('utf-8')
+    return text
 
 def parseMainArticle(painter, pagePick, mainText):
     print ('Parse main article...')
