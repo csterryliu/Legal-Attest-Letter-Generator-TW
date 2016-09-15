@@ -6,7 +6,7 @@ from lal_modules import pdfpage
 from lal_modules import pdfpainter
 from lal_modules.constants import *
 
-codec_name = 'utf-8' if os_type is 'posix' else 'big5'
+codec_name = 'utf-8'
 
 def processArgs():
     argParser = argparse.ArgumentParser(description=u'台灣郵局存證信函產生器',
@@ -59,11 +59,12 @@ def isOnlyOneNameOrAddress(namelist, addresslist):
     return ret_value
 
 def readMainArticle(filepath):
-    text_file = open(filepath, 'r')
+    BOM = b'\xef\xbb\xbf'.decode(codec_name)
+    text_file = open(filepath, 'r', encoding=codec_name)
     text = text_file.read()
     text_file.close()
     # In case the user insists on using Notepad of Windows, remove BOM
-    text = text.lstrip('\xef\xbb\xbf')
+    text = text.lstrip(BOM)
     return text
 
 def parseMainArticle(painter, pagePick, mainText):
