@@ -68,7 +68,7 @@ def readMainArticle(filepath):
     return text
 
 def parseMainArticle(painter, pagePick, mainText):
-    print ('Parse main article...')
+    print('Parse main article...')
     x_begin, y_begin, line_counter, char_counter = resetCordinatesAndCounters()
     for i in range(0, len(mainText)):
         if text[i] == '\n' or (char_counter > CONTENT_MAX_CHARACTER_PER_LINE):
@@ -183,7 +183,7 @@ if onePageIsEnough is False:
 blank_letter_producer.save()
 generator.save()
 
-print ('Merging...')
+print('Merging...')
 pageMerge = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, outputFileName)
 for i in range(pageMerge.getSrcTotalPage()):
     pageMerge.mergeSrcPageToDestPage(i, i)
@@ -192,4 +192,4 @@ pageMerge.save()
 remove(GENERATED_TEXT_PATH)
 remove(GENERATED_BLANK_LETTER_PATH)
 
-print ('Done. Filename: ', outputFileName)
+print('Done. Filename: ', outputFileName)
