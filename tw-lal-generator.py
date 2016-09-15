@@ -8,7 +8,7 @@ from lal_modules.constants import *
 
 codec_name = 'utf-8'
 
-def processArgs():
+def process_args():
     argParser = argparse.ArgumentParser(description=u'台灣郵局存證信函產生器',
                                         add_help=False)
     argParser.add_argument('--help',
@@ -50,7 +50,7 @@ def processArgs():
                            default='output.pdf')
     return argParser.parse_args()
 
-def isOnlyOneNameOrAddress(namelist, addresslist):
+def is_only_one_name_or_address(namelist, addresslist):
     ret_value = True
     if len(namelist) != 0:
         ret_value = ret_value and (len(namelist) == 1)
@@ -58,7 +58,7 @@ def isOnlyOneNameOrAddress(namelist, addresslist):
         ret_value = ret_value and (len(addresslist) == 1)
     return ret_value
 
-def readMainArticle(filepath):
+def read_main_article(filepath):
     BOM = b'\xef\xbb\xbf'.decode(codec_name)
     text_file = open(filepath, 'r', encoding=codec_name)
     text = text_file.read()
@@ -67,12 +67,12 @@ def readMainArticle(filepath):
     text = text.lstrip(BOM)
     return text
 
-def parseMainArticle(painter, pagePick, mainText):
+def parse_main_article(painter, pagePick, mainText):
     print('Parse main article...')
-    x_begin, y_begin, line_counter, char_counter = resetCordinatesAndCounters()
+    x_begin, y_begin, line_counter, char_counter = reset_coordinates_and_counters()
     for i in range(0, len(mainText)):
         if text[i] == '\n' or (char_counter > CONTENT_MAX_CHARACTER_PER_LINE):
-            x_begin, y_begin = getNewLineCordinate(y_begin)
+            x_begin, y_begin = get_new_line_coordinate(y_begin)
             line_counter = line_counter + 1
             char_counter = 1
             if text[i] == '\n':
@@ -80,22 +80,22 @@ def parseMainArticle(painter, pagePick, mainText):
         if line_counter > CONTENT_MAX_LINE_PER_PAGE:
             painter.endThisPage()
             pagePick.pickIndividualPages([0])
-            x_begin, y_begin, line_counter, char_counter = resetCordinatesAndCounters()
+            x_begin, y_begin, line_counter, char_counter = reset_coordinates_and_counters()
         painter.drawString(x_begin, y_begin, text[i])
         x_begin += (CONTENT_X_Y_INTERVAL[0] - CONTENT_X_Y_FIX[0])
         char_counter = char_counter + 1
     generator.endThisPage()
     pagePick.pickIndividualPages([0])
 
-def getNewLineCordinate(currentY):
+def get_new_line_coordinate(currentY):
     newX = CONTENT_X_Y_BEGIN[0]
     newY = currentY - (CONTENT_X_Y_INTERVAL[1] + CONTENT_X_Y_FIX[1])
     return newX, newY
 
-def resetCordinatesAndCounters():
+def reset_coordinates_and_counters():
     return CONTENT_X_Y_BEGIN[0], CONTENT_X_Y_BEGIN[1], 1, 1
 
-def drawInfoBox(painter):
+def draw_info_box(painter):
     painter.setFont(DEFAULT_FONT_PATH, 8)
     painter.drawString(cut_info_x_y[0], cut_info_x_y[1], u'[請自行剪下貼上]')
     painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1],
@@ -110,11 +110,11 @@ def drawInfoBox(painter):
     painter.drawString(title_start[0], title_start[1], u'一、寄件人')
     x_begin = detail_start[0]
     y_begin = detail_start[1]
-    y_begin = fillNameAndAddressInInfoBox(x_begin, y_begin, senders, sendersAddr)
+    y_begin = fill_name_address_in_info_box(x_begin, y_begin, senders, sendersAddr)
 
     y_begin -= title_y_interval
     painter.drawString(title_start[0], y_begin, u'二、收件人')
-    y_begin = fillNameAndAddressInInfoBox(x_begin, y_begin, receivers, receiversAddr)
+    y_begin = fill_name_address_in_info_box(x_begin, y_begin, receivers, receiversAddr)
 
     y_begin -= title_y_interval
     painter.drawString(title_start[0], y_begin, u'三、')
@@ -122,7 +122,7 @@ def drawInfoBox(painter):
                        y_begin+cc_receiver_fix_x_y[1], u'副 本')
     painter.drawString(title_start[0]+cc_receiver_fix_x_y[0],
                        y_begin-cc_receiver_fix_x_y[1], u'收件人')
-    y_begin = fillNameAndAddressInInfoBox(x_begin, y_begin, cc, ccAddr)
+    y_begin = fill_name_address_in_info_box(x_begin, y_begin, cc, ccAddr)
 
     painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1],
                      box_uppderLeft_x_y[0], y_begin)  # left
@@ -130,7 +130,7 @@ def drawInfoBox(painter):
     painter.drawLine(box_uppderRight_x_y[0], box_uppderRight_x_y[1],
                      box_uppderRight_x_y[0], y_begin)  # right
 
-def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
+def fill_name_address_in_info_box(x_begin, y_begin, namelist, addresslist):
     max_count = max(len(namelist), len(addresslist))
     if max_count == 0:
         generator.drawString(x_begin, y_begin, u'姓名：')
@@ -148,7 +148,7 @@ def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
 
     return y_begin
 
-def fillNameAndAddressOnFirstPage(namelist, addresslist, type):
+def fill_name_address_on_first_page(namelist, addresslist, type):
     if len(namelist) == 1:
         allName = ' '.join(namelist[0])
         generator.drawString(NAME_COORDINATE[type+'_x_y_begin'][0],
@@ -162,14 +162,14 @@ def fillNameAndAddressOnFirstPage(namelist, addresslist, type):
 ##############################
 ### Main program goes here
 ##############################
-args = processArgs()
+args = process_args()
 senders = args.senderName
 sendersAddr = args.senderAddr
 receivers = args.receiverName
 receiversAddr = args.receiverAddr
 cc = args.ccName
 ccAddr = args.ccAddr
-text = readMainArticle(args.article_file)
+text = read_main_article(args.article_file)
 outputFileName = args.outputFileName
 
 generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH,
@@ -177,20 +177,20 @@ generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH,
 blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
 
 # write name and address directly if one page is enough
-onePageIsEnough = isOnlyOneNameOrAddress(senders, sendersAddr) and \
-                  isOnlyOneNameOrAddress(receivers, receiversAddr) and \
-                  isOnlyOneNameOrAddress(cc, ccAddr)
+onePageIsEnough = is_only_one_name_or_address(senders, sendersAddr) and \
+                  is_only_one_name_or_address(receivers, receiversAddr) and \
+                  is_only_one_name_or_address(cc, ccAddr)
 if onePageIsEnough:
     generator.setFont(DEFAULT_FONT_PATH, 10)
-    fillNameAndAddressOnFirstPage(senders, sendersAddr, 's')
-    fillNameAndAddressOnFirstPage(receivers, receiversAddr, 'r')
-    fillNameAndAddressOnFirstPage(cc, ccAddr, 'c')
+    fill_name_address_on_first_page(senders, sendersAddr, 's')
+    fill_name_address_on_first_page(receivers, receiversAddr, 'r')
+    fill_name_address_on_first_page(cc, ccAddr, 'c')
 
 generator.setFont(DEFAULT_FONT_PATH, 20)
-parseMainArticle(generator, blank_letter_producer, text)
+parse_main_article(generator, blank_letter_producer, text)
 
 if onePageIsEnough is False:
-    drawInfoBox(generator)
+    draw_info_box(generator)
     generator.endThisPage()
     blank_letter_producer.insertBlankPage()
 
