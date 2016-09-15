@@ -98,8 +98,11 @@ def resetCordinatesAndCounters():
 def drawInfoBox(painter):
     painter.setFont(DEFAULT_FONT_PATH, 8)
     painter.drawString(cut_info_x_y[0], cut_info_x_y[1], u'[請自行剪下貼上]')
-    painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1], box_uppderRight_x_y[0], box_uppderRight_x_y[1])
-    painter.drawString(quote_x_y[0], quote_x_y[1], u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
+    painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1],
+                     box_uppderRight_x_y[0], box_uppderRight_x_y[1])
+    painter.drawString(quote_x_y[0],
+                       quote_x_y[1],
+                       u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
     painter.drawRect(rect_x_y_w_h[0], rect_x_y_w_h[1], rect_x_y_w_h[2], rect_x_y_w_h[3])
     painter.setFont(DEFAULT_FONT_PATH, 10)
     painter.drawString(cht_in_rect_x_y[0], cht_in_rect_x_y[1], u'印')
@@ -115,13 +118,17 @@ def drawInfoBox(painter):
 
     y_begin -= title_y_interval
     painter.drawString(title_start[0], y_begin, u'三、')
-    painter.drawString(title_start[0]+cc_receiver_fix_x_y[0], y_begin+cc_receiver_fix_x_y[1], u'副 本')
-    painter.drawString(title_start[0]+cc_receiver_fix_x_y[0], y_begin-cc_receiver_fix_x_y[1], u'收件人')
+    painter.drawString(title_start[0]+cc_receiver_fix_x_y[0],
+                       y_begin+cc_receiver_fix_x_y[1], u'副 本')
+    painter.drawString(title_start[0]+cc_receiver_fix_x_y[0],
+                       y_begin-cc_receiver_fix_x_y[1], u'收件人')
     y_begin = fillNameAndAddressInInfoBox(x_begin, y_begin, cc, ccAddr)
 
-    painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1], box_uppderLeft_x_y[0], y_begin)  # left
+    painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1],
+                     box_uppderLeft_x_y[0], y_begin)  # left
     painter.drawLine(box_uppderLeft_x_y[0], y_begin, box_uppderRight_x_y[0], y_begin)  # buttom
-    painter.drawLine(box_uppderRight_x_y[0], box_uppderRight_x_y[1], box_uppderRight_x_y[0], y_begin)  # right
+    painter.drawLine(box_uppderRight_x_y[0], box_uppderRight_x_y[1],
+                     box_uppderRight_x_y[0], y_begin)  # right
 
 def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
     max_count = max(len(namelist), len(addresslist))
@@ -144,9 +151,13 @@ def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
 def fillNameAndAddressOnFirstPage(namelist, addresslist, type):
     if len(namelist) == 1:
         allName = ' '.join(namelist[0])
-        generator.drawString(NAME_COORDINATE[type+'_x_y_begin'][0], NAME_COORDINATE[type+'_x_y_begin'][1], allName)
+        generator.drawString(NAME_COORDINATE[type+'_x_y_begin'][0],
+                             NAME_COORDINATE[type+'_x_y_begin'][1],
+                             allName)
     if len(addresslist) == 1:
-        generator.drawString(ADDR_COORDINATE[type+'_x_y_begin'][0] , ADDR_COORDINATE[type+'_x_y_begin'][1], addresslist[0])
+        generator.drawString(ADDR_COORDINATE[type+'_x_y_begin'][0],
+                             ADDR_COORDINATE[type+'_x_y_begin'][1],
+                             addresslist[0])
 
 ##############################
 ### Main program goes here
@@ -161,11 +172,14 @@ ccAddr = args.ccAddr
 text = readMainArticle(args.article_file)
 outputFileName = args.outputFileName
 
-generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH, LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
+generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH,
+                                  LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
 blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
 
 # write name and address directly if one page is enough
-onePageIsEnough = isOnlyOneNameOrAddress(senders, sendersAddr) and isOnlyOneNameOrAddress(receivers, receiversAddr) and isOnlyOneNameOrAddress(cc, ccAddr)
+onePageIsEnough = isOnlyOneNameOrAddress(senders, sendersAddr) and \
+                  isOnlyOneNameOrAddress(receivers, receiversAddr) and \
+                  isOnlyOneNameOrAddress(cc, ccAddr)
 if onePageIsEnough:
     generator.setFont(DEFAULT_FONT_PATH, 10)
     fillNameAndAddressOnFirstPage(senders, sendersAddr, 's')
