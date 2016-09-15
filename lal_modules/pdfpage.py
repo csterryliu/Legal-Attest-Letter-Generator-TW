@@ -29,7 +29,7 @@ class PDFPagePick:
 
     def __checkPageNum(self, target, pageNum):
         if pageNum < 0 or pageNum > target.getNumPages()-1:
-            print 'Invalid pageNum'
+            print ('Invalid pageNum')
             return False
         return True
 
@@ -60,6 +60,6 @@ class PDFPageMerge:
 
     def __checkPageNum(self, target, pageNum):
         if pageNum < 0 or pageNum > target.getNumPages()-1:
-            print 'Invalid pageNum'
+            print ('Invalid pageNum')
             return False
         return True
