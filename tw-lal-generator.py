@@ -1,5 +1,4 @@
 #!/usr/local/bin/python3
-# -*- coding: utf-8 -*-
 import argparse
 from os import remove
 from os import name as os_type
@@ -10,44 +9,44 @@ from lal_modules.constants import *
 codec_name = 'utf-8' if os_type is 'posix' else 'big5'
 
 def processArgs():
-    argParser = argparse.ArgumentParser(description=u'台灣郵局存證信函產生器'.encode(codec_name),
+    argParser = argparse.ArgumentParser(description=u'台灣郵局存證信函產生器',
                                         add_help=False)
     argParser.add_argument('--help',
                             action='help',
-                            help=u'顯示使用說明'.encode(codec_name))
+                            help=u'顯示使用說明')
     argParser.add_argument('article_file',
                             action='store',
-                            help=u'存證信函全文之純文字檔路徑'.encode(codec_name))
+                            help=u'存證信函全文之純文字檔路徑')
     argParser.add_argument('--senderName',
                             action='append',
                             nargs='+',
-                            metavar=u'寄件人姓名'.encode(codec_name),
+                            metavar=u'寄件人姓名',
                             default=[])
     argParser.add_argument('--senderAddr',
                             action='append',
-                            metavar=u'寄件人詳細地址'.encode(codec_name),
+                            metavar=u'寄件人詳細地址',
                             default=[])
     argParser.add_argument('--receiverName',
                             action='append',
                             nargs='+',
-                            metavar=u'收件人姓名'.encode(codec_name),
+                            metavar=u'收件人姓名',
                             default=[])
     argParser.add_argument('--receiverAddr',
                             action='append',
-                            metavar=u'收件人詳細地址'.encode(codec_name),
+                            metavar=u'收件人詳細地址',
                             default=[])
     argParser.add_argument('--ccName',
                             action='append',
                             nargs='+',
-                            metavar=u'副本收件人姓名'.encode(codec_name),
+                            metavar=u'副本收件人姓名',
                             default=[])
     argParser.add_argument('--ccAddr',
                             action='append',
-                            metavar=u'副本收件人詳細地址'.encode(codec_name),
+                            metavar=u'副本收件人詳細地址',
                             default=[])
     argParser.add_argument('--outputFileName',
                             action='store',
-                            metavar=u'輸出之檔案名稱'.encode(codec_name),
+                            metavar=u'輸出之檔案名稱',
                             default='output.pdf')
     return argParser.parse_args()
 
