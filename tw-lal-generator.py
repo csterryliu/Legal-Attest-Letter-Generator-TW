@@ -131,10 +131,10 @@ def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
         y_begin -= detail_y_interval
 
     for i in range(max_count):
-        allName = ' '.join(namelist[i]).decode(codec_name) if i <= len(namelist)-1 else ''
+        allName = ' '.join(namelist[i]) if i <= len(namelist)-1 else ''
         generator.drawString(x_begin, y_begin, u'姓名：' + allName)
         y_begin -= detail_y_interval
-        address = addresslist[i].decode(codec_name) if i <= len(addresslist)-1 else ''
+        address = addresslist[i] if i <= len(addresslist)-1 else ''
         generator.drawString(x_begin, y_begin, u'詳細地址：' + address)
         y_begin -= detail_y_interval
 
@@ -142,10 +142,10 @@ def fillNameAndAddressInInfoBox(x_begin, y_begin, namelist, addresslist):
 
 def fillNameAndAddressOnFirstPage(namelist, addresslist, type):
     if len(namelist) == 1:
-        allName = ' '.join(namelist[0]).decode(codec_name)
+        allName = ' '.join(namelist[0])
         generator.drawString(NAME_COORDINATE[type+'_x_y_begin'][0], NAME_COORDINATE[type+'_x_y_begin'][1], allName)
     if len(addresslist) == 1:
-        generator.drawString(ADDR_COORDINATE[type+'_x_y_begin'][0] , ADDR_COORDINATE[type+'_x_y_begin'][1], addresslist[0].decode(codec_name))
+        generator.drawString(ADDR_COORDINATE[type+'_x_y_begin'][0] , ADDR_COORDINATE[type+'_x_y_begin'][1], addresslist[0])
 
 ##############################
 ### Main program goes here
