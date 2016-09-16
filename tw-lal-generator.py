@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3
 import argparse
 from os import remove
-from os import name as os_type
 from lal_modules import pdfpage
 from lal_modules import pdfpainter
 from lal_modules.constants import *
@@ -148,15 +147,15 @@ def fill_name_address_in_info_box(x_begin, y_begin, namelist, addresslist):
 
     return y_begin
 
-def fill_name_address_on_first_page(namelist, addresslist, type):
+def fill_name_address_on_first_page(namelist, addresslist, type_):
     if len(namelist) == 1:
         all_name = ' '.join(namelist[0])
-        generator.drawString(NAME_COORDINATE[type+'_x_y_begin'][0],
-                             NAME_COORDINATE[type+'_x_y_begin'][1],
+        generator.drawString(NAME_COORDINATE[type_+'_x_y_begin'][0],
+                             NAME_COORDINATE[type_+'_x_y_begin'][1],
                              all_name)
     if len(addresslist) == 1:
-        generator.drawString(ADDR_COORDINATE[type+'_x_y_begin'][0],
-                             ADDR_COORDINATE[type+'_x_y_begin'][1],
+        generator.drawString(ADDR_COORDINATE[type_+'_x_y_begin'][0],
+                             ADDR_COORDINATE[type_+'_x_y_begin'][1],
                              addresslist[0])
 
 ##############################
