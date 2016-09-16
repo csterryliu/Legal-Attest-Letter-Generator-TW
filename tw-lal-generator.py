@@ -67,29 +67,29 @@ def read_main_article(filepath):
     text = text.lstrip(bom)
     return text
 
-def parse_main_article(painter, pagePick, mainText):
+def parse_main_article(painter, page_pick, main_text):
     print('Parse main article...')
     x_begin, y_begin, line_counter, char_counter = reset_coordinates_and_counters()
-    for i in range(0, len(mainText)):
-        if text[i] == '\n' or (char_counter > CONTENT_MAX_CHARACTER_PER_LINE):
+    for i in range(0, len(main_text)):
+        if main_text[i] == '\n' or (char_counter > CONTENT_MAX_CHARACTER_PER_LINE):
             x_begin, y_begin = get_new_line_coordinate(y_begin)
             line_counter = line_counter + 1
             char_counter = 1
-            if text[i] == '\n':
+            if main_text[i] == '\n':
                 continue
         if line_counter > CONTENT_MAX_LINE_PER_PAGE:
             painter.endThisPage()
-            pagePick.pickIndividualPages([0])
+            page_pick.pickIndividualPages([0])
             x_begin, y_begin, line_counter, char_counter = reset_coordinates_and_counters()
-        painter.drawString(x_begin, y_begin, text[i])
+        painter.drawString(x_begin, y_begin, main_text[i])
         x_begin += (CONTENT_X_Y_INTERVAL[0] - CONTENT_X_Y_FIX[0])
         char_counter = char_counter + 1
     generator.endThisPage()
-    pagePick.pickIndividualPages([0])
+    page_pick.pickIndividualPages([0])
 
-def get_new_line_coordinate(currentY):
+def get_new_line_coordinate(current_y):
     new_x = CONTENT_X_Y_BEGIN[0]
-    new_y = currentY - (CONTENT_X_Y_INTERVAL[1] + CONTENT_X_Y_FIX[1])
+    new_y = current_y - (CONTENT_X_Y_INTERVAL[1] + CONTENT_X_Y_FIX[1])
     return new_x, new_y
 
 def reset_coordinates_and_counters():
