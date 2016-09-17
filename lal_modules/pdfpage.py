@@ -14,7 +14,7 @@ class PDFPagePick:
 
     def pick_individual_pages(self, page_num_list):
         for page_num in page_num_list:
-            if self.__check_page_num(self.__src, page_num) == True:
+            if self.__check_page_num(self.__src, page_num) is True:
                 self.__output.addPage(self.__src.getPage(page_num))
             else:
                 print('pageNum %d doesn''t exist. Pass' % page_num)
@@ -45,8 +45,8 @@ class PDFPageMerge:
         self.__output = PdfFileWriter()
 
     def merge_src_page_to_dest_page(self, src_page_num, dest_page_num):
-        if (self.__check_page_num(self.__src, src_page_num) == True
-                and self.__check_page_num(self.__dest, dest_page_num) == True):
+        if (self.__check_page_num(self.__src, src_page_num) is True
+                and self.__check_page_num(self.__dest, dest_page_num) is True):
             dest_page = self.__dest.getPage(dest_page_num)
             dest_page.mergePage(self.__src.getPage(src_page_num))
             self.__output.addPage(dest_page)
