@@ -42,7 +42,9 @@ def main():
     generator.save()
 
     print('Merging...')
-    page_merge = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, output_filename)
+    page_merge = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH,
+                                      GENERATED_BLANK_LETTER_PATH,
+                                      output_filename)
     for i in range(page_merge.getSrcTotalPage()):
         page_merge.mergeSrcPageToDestPage(i, i)
     page_merge.save()
@@ -141,18 +143,14 @@ def reset_coordinates_and_counters():
     return CONTENT_X_Y_BEGIN[0], CONTENT_X_Y_BEGIN[1], 1, 1
 
 def draw_info_box(painter,
-                  sender_list,
-                  sender_addr_list,
-                  receiver_list,
-                  receiver_addr_list,
-                  cc_list,
-                  cc_addr_list):
+                  sender_list, sender_addr_list,
+                  receiver_list, receiver_addr_list,
+                  cc_list, cc_addr_list):
     painter.setFont(DEFAULT_FONT_PATH, 8)
     painter.drawString(cut_info_x_y[0], cut_info_x_y[1], u'[請自行剪下貼上]')
     painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1],
                      box_uppderRight_x_y[0], box_uppderRight_x_y[1])
-    painter.drawString(quote_x_y[0],
-                       quote_x_y[1],
+    painter.drawString(quote_x_y[0], quote_x_y[1],
                        u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
     painter.drawRect(rect_x_y_w_h[0], rect_x_y_w_h[1], rect_x_y_w_h[2], rect_x_y_w_h[3])
     painter.setFont(DEFAULT_FONT_PATH, 10)
@@ -161,11 +159,15 @@ def draw_info_box(painter,
     painter.drawString(title_start[0], title_start[1], u'一、寄件人')
     x_begin = detail_start[0]
     y_begin = detail_start[1]
-    y_begin = fill_name_address_in_info_box(painter, x_begin, y_begin, sender_list, sender_addr_list)
+    y_begin = fill_name_address_in_info_box(painter,
+                                            x_begin, y_begin,
+                                            sender_list, sender_addr_list)
 
     y_begin -= title_y_interval
     painter.drawString(title_start[0], y_begin, u'二、收件人')
-    y_begin = fill_name_address_in_info_box(painter, x_begin, y_begin, receiver_list, receiver_addr_list)
+    y_begin = fill_name_address_in_info_box(painter,
+                                            x_begin, y_begin,
+                                            receiver_list, receiver_addr_list)
 
     y_begin -= title_y_interval
     painter.drawString(title_start[0], y_begin, u'三、')
@@ -173,11 +175,14 @@ def draw_info_box(painter,
                        y_begin+cc_receiver_fix_x_y[1], u'副 本')
     painter.drawString(title_start[0]+cc_receiver_fix_x_y[0],
                        y_begin-cc_receiver_fix_x_y[1], u'收件人')
-    y_begin = fill_name_address_in_info_box(painter, x_begin, y_begin, cc_list, cc_addr_list)
+    y_begin = fill_name_address_in_info_box(painter,
+                                            x_begin, y_begin,
+                                            cc_list, cc_addr_list)
 
     painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1],
                      box_uppderLeft_x_y[0], y_begin)  # left
-    painter.drawLine(box_uppderLeft_x_y[0], y_begin, box_uppderRight_x_y[0], y_begin)  # buttom
+    painter.drawLine(box_uppderLeft_x_y[0], y_begin,
+                     box_uppderRight_x_y[0], y_begin)  # buttom
     painter.drawLine(box_uppderRight_x_y[0], box_uppderRight_x_y[1],
                      box_uppderRight_x_y[0], y_begin)  # right
 
@@ -203,12 +208,12 @@ def fill_name_address_on_first_page(painter, namelist, addresslist, type_):
     if len(namelist) == 1:
         all_name = ' '.join(namelist[0])
         painter.drawString(NAME_COORDINATE[type_+'_x_y_begin'][0],
-                             NAME_COORDINATE[type_+'_x_y_begin'][1],
-                             all_name)
+                           NAME_COORDINATE[type_+'_x_y_begin'][1],
+                           all_name)
     if len(addresslist) == 1:
         painter.drawString(ADDR_COORDINATE[type_+'_x_y_begin'][0],
-                             ADDR_COORDINATE[type_+'_x_y_begin'][1],
-                             addresslist[0])
+                           ADDR_COORDINATE[type_+'_x_y_begin'][1],
+                           addresslist[0])
 
 ##############################
 ### Main program goes here
