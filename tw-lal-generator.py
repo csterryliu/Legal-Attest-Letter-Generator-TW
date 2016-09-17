@@ -36,7 +36,7 @@ def main():
     if one_page_is_enough is False:
         draw_info_box(generator, senders, senders_addr, receivers, receivers_addr, ccs, cc_addr)
         generator.endThisPage()
-        blank_letter_producer.insertBlankPage()
+        blank_letter_producer.insert_blank_page()
 
     blank_letter_producer.save()
     generator.save()
@@ -45,8 +45,8 @@ def main():
     page_merge = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH,
                                       GENERATED_BLANK_LETTER_PATH,
                                       output_filename)
-    for i in range(page_merge.getSrcTotalPage()):
-        page_merge.mergeSrcPageToDestPage(i, i)
+    for i in range(page_merge.get_src_total_page()):
+        page_merge.merge_src_page_to_dest_page(i, i)
     page_merge.save()
 
     remove(GENERATED_TEXT_PATH)
@@ -126,13 +126,13 @@ def parse_main_article(painter, page_pick, main_text):
                 continue
         if line_counter > CONTENT_MAX_LINE_PER_PAGE:
             painter.endThisPage()
-            page_pick.pickIndividualPages([0])
+            page_pick.pick_individual_pages([0])
             x_begin, y_begin, line_counter, char_counter = reset_coordinates_and_counters()
         painter.drawString(x_begin, y_begin, main_text[i])
         x_begin += (CONTENT_X_Y_INTERVAL[0] - CONTENT_X_Y_FIX[0])
         char_counter = char_counter + 1
     painter.endThisPage()
-    page_pick.pickIndividualPages([0])
+    page_pick.pick_individual_pages([0])
 
 def get_new_line_coordinate(current_y):
     new_x = CONTENT_X_Y_BEGIN[0]
