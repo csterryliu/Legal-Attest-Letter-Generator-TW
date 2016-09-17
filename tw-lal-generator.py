@@ -8,33 +8,33 @@ from lal_modules.constants import *
 def main():
     args = process_args()
     senders = args.senderName
-    sendersAddr = args.senderAddr
+    senders_addr = args.senderAddr
     receivers = args.receiverName
-    receiversAddr = args.receiverAddr
-    cc = args.ccName
-    ccAddr = args.ccAddr
+    receivers_addr = args.receiverAddr
+    ccs = args.ccName
+    cc_addr = args.ccAddr
     text = read_main_article(args.article_file)
-    outputFileName = args.outputFileName
+    output_filename = args.outputFileName
 
     generator = pdfpainter.PDFPainter(GENERATED_TEXT_PATH,
                                       LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
     blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, GENERATED_BLANK_LETTER_PATH)
 
     # write name and address directly if one page is enough
-    onePageIsEnough = is_only_one_name_or_address(senders, sendersAddr) and \
-                      is_only_one_name_or_address(receivers, receiversAddr) and \
-                      is_only_one_name_or_address(cc, ccAddr)
-    if onePageIsEnough:
+    one_page_is_enough = is_only_one_name_or_address(senders, senders_addr) and \
+                      is_only_one_name_or_address(receivers, receivers_addr) and \
+                      is_only_one_name_or_address(ccs, cc_addr)
+    if one_page_is_enough:
         generator.setFont(DEFAULT_FONT_PATH, 10)
-        fill_name_address_on_first_page(generator, senders, sendersAddr, 's')
-        fill_name_address_on_first_page(generator, receivers, receiversAddr, 'r')
-        fill_name_address_on_first_page(generator, cc, ccAddr, 'c')
+        fill_name_address_on_first_page(generator, senders, senders_addr, 's')
+        fill_name_address_on_first_page(generator, receivers, receivers_addr, 'r')
+        fill_name_address_on_first_page(generator, ccs, cc_addr, 'c')
 
     generator.setFont(DEFAULT_FONT_PATH, 20)
     parse_main_article(generator, blank_letter_producer, text)
 
-    if onePageIsEnough is False:
-        draw_info_box(generator, senders, sendersAddr, receivers, receiversAddr, cc, ccAddr)
+    if one_page_is_enough is False:
+        draw_info_box(generator, senders, senders_addr, receivers, receivers_addr, ccs, cc_addr)
         generator.endThisPage()
         blank_letter_producer.insertBlankPage()
 
@@ -42,15 +42,15 @@ def main():
     generator.save()
 
     print('Merging...')
-    pageMerge = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, outputFileName)
-    for i in range(pageMerge.getSrcTotalPage()):
-        pageMerge.mergeSrcPageToDestPage(i, i)
-    pageMerge.save()
+    page_merge = pdfpage.PDFPageMerge(GENERATED_TEXT_PATH, GENERATED_BLANK_LETTER_PATH, output_filename)
+    for i in range(page_merge.getSrcTotalPage()):
+        page_merge.mergeSrcPageToDestPage(i, i)
+    page_merge.save()
 
     remove(GENERATED_TEXT_PATH)
     remove(GENERATED_BLANK_LETTER_PATH)
 
-    print('Done. Filename: ', outputFileName)
+    print('Done. Filename: ', output_filename)
 
 def process_args():
     arg_parser = argparse.ArgumentParser(description=u'台灣郵局存證信函產生器',
