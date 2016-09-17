@@ -13,8 +13,8 @@ class PDFPainter:
     """
     def __init__(self, filename, wide, height):
         self.__canvas = canvas.Canvas(filename, pagesize=(wide, height))
-        self.__canvas.setStrokeColorRGB(0,0,0)
-        self.__canvas.setFillColorRGB(0,0,0)
+        self.__canvas.setStrokeColorRGB(0, 0, 0)
+        self.__canvas.setFillColorRGB(0, 0, 0)
         self.__fontSize = _DEFAULT_FONT_SIZE
 
     def setFont(self, fontPath, fontSize=_DEFAULT_FONT_SIZE):
