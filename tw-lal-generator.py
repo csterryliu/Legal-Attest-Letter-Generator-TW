@@ -147,60 +147,60 @@ def draw_info_box(painter,
                   receiver_list, receiver_addr_list,
                   cc_list, cc_addr_list):
     painter.setFont(DEFAULT_FONT_PATH, 8)
-    painter.drawString(cut_info_x_y[0], cut_info_x_y[1], u'[請自行剪下貼上]')
-    painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1],
-                     box_uppderRight_x_y[0], box_uppderRight_x_y[1])
-    painter.drawString(quote_x_y[0], quote_x_y[1],
+    painter.drawString(CUT_INFO_X_Y[0], CUT_INFO_X_Y[1], u'[請自行剪下貼上]')
+    painter.drawLine(BOX_UPPDERLEFT_X_Y[0], BOX_UPPDERLEFT_X_Y[1],
+                     BOX_UPPDERRIGHT_X_Y[0], BOX_UPPDERRIGHT_X_Y[1])
+    painter.drawString(QUOTE_X_Y[0], QUOTE_X_Y[1],
                        u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
-    painter.drawRect(rect_x_y_w_h[0], rect_x_y_w_h[1], rect_x_y_w_h[2], rect_x_y_w_h[3])
+    painter.drawRect(RECT_X_Y_W_H[0], RECT_X_Y_W_H[1], RECT_X_Y_W_H[2], RECT_X_Y_W_H[3])
     painter.setFont(DEFAULT_FONT_PATH, 10)
-    painter.drawString(cht_in_rect_x_y[0], cht_in_rect_x_y[1], u'印')
+    painter.drawString(CHT_IN_RECT_X_Y[0], CHT_IN_RECT_X_Y[1], u'印')
 
-    painter.drawString(title_start[0], title_start[1], u'一、寄件人')
-    x_begin = detail_start[0]
-    y_begin = detail_start[1]
+    painter.drawString(TITLE_START[0], TITLE_START[1], u'一、寄件人')
+    x_begin = DETAIL_START[0]
+    y_begin = DETAIL_START[1]
     y_begin = fill_name_address_in_info_box(painter,
                                             x_begin, y_begin,
                                             sender_list, sender_addr_list)
 
-    y_begin -= title_y_interval
-    painter.drawString(title_start[0], y_begin, u'二、收件人')
+    y_begin -= TITLE_Y_INTERVAL
+    painter.drawString(TITLE_START[0], y_begin, u'二、收件人')
     y_begin = fill_name_address_in_info_box(painter,
                                             x_begin, y_begin,
                                             receiver_list, receiver_addr_list)
 
-    y_begin -= title_y_interval
-    painter.drawString(title_start[0], y_begin, u'三、')
-    painter.drawString(title_start[0]+cc_receiver_fix_x_y[0],
-                       y_begin+cc_receiver_fix_x_y[1], u'副 本')
-    painter.drawString(title_start[0]+cc_receiver_fix_x_y[0],
-                       y_begin-cc_receiver_fix_x_y[1], u'收件人')
+    y_begin -= TITLE_Y_INTERVAL
+    painter.drawString(TITLE_START[0], y_begin, u'三、')
+    painter.drawString(TITLE_START[0]+CC_RECEIVER_FIX_X_Y[0],
+                       y_begin+CC_RECEIVER_FIX_X_Y[1], u'副 本')
+    painter.drawString(TITLE_START[0]+CC_RECEIVER_FIX_X_Y[0],
+                       y_begin-CC_RECEIVER_FIX_X_Y[1], u'收件人')
     y_begin = fill_name_address_in_info_box(painter,
                                             x_begin, y_begin,
                                             cc_list, cc_addr_list)
 
-    painter.drawLine(box_uppderLeft_x_y[0], box_uppderLeft_x_y[1],
-                     box_uppderLeft_x_y[0], y_begin)  # left
-    painter.drawLine(box_uppderLeft_x_y[0], y_begin,
-                     box_uppderRight_x_y[0], y_begin)  # buttom
-    painter.drawLine(box_uppderRight_x_y[0], box_uppderRight_x_y[1],
-                     box_uppderRight_x_y[0], y_begin)  # right
+    painter.drawLine(BOX_UPPDERLEFT_X_Y[0], BOX_UPPDERLEFT_X_Y[1],
+                     BOX_UPPDERLEFT_X_Y[0], y_begin)  # left
+    painter.drawLine(BOX_UPPDERLEFT_X_Y[0], y_begin,
+                     BOX_UPPDERRIGHT_X_Y[0], y_begin)  # buttom
+    painter.drawLine(BOX_UPPDERRIGHT_X_Y[0], BOX_UPPDERRIGHT_X_Y[1],
+                     BOX_UPPDERRIGHT_X_Y[0], y_begin)  # right
 
 def fill_name_address_in_info_box(painter, x_begin, y_begin, namelist, addresslist):
     max_count = max(len(namelist), len(addresslist))
     if max_count == 0:
         painter.drawString(x_begin, y_begin, u'姓名：')
-        y_begin -= detail_y_interval
+        y_begin -= DETAIL_Y_INTERVAL
         painter.drawString(x_begin, y_begin, u'詳細地址：')
-        y_begin -= detail_y_interval
+        y_begin -= DETAIL_Y_INTERVAL
 
     for i in range(max_count):
         all_name = ' '.join(namelist[i]) if i <= len(namelist)-1 else ''
         painter.drawString(x_begin, y_begin, u'姓名：' + all_name)
-        y_begin -= detail_y_interval
+        y_begin -= DETAIL_Y_INTERVAL
         address = addresslist[i] if i <= len(addresslist)-1 else ''
         painter.drawString(x_begin, y_begin, u'詳細地址：' + address)
-        y_begin -= detail_y_interval
+        y_begin -= DETAIL_Y_INTERVAL
 
     return y_begin
 
