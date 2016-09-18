@@ -6,7 +6,7 @@ LETTER_FORMAT_PATH = 'res/tw_lal.pdf'
 GENERATED_TEXT_PATH = 'content.pdf'
 GENERATED_BLANK_LETTER_PATH = 'blank_letter.pdf'
 DEFAULT_FONT_PATH = 'res/TW-Kai-98_1.ttf'
-PDF_INCH = 72
+_PDF_INCH = 72
 ########################################################################
 # pre-defined coordinates of main article
 ########################################################################
