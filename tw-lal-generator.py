@@ -149,9 +149,9 @@ def draw_info_box(painter,
     painter.set_font(DEFAULT_FONT_PATH, 8)
     painter.draw_string(CUT_INFO_X_Y[0], CUT_INFO_X_Y[1], u'[請自行剪下貼上]')
     painter.draw_line(BOX_UPPDERLEFT_X_Y[0], BOX_UPPDERLEFT_X_Y[1],
-                     BOX_UPPDERRIGHT_X_Y[0], BOX_UPPDERRIGHT_X_Y[1])
+                      BOX_UPPDERRIGHT_X_Y[0], BOX_UPPDERRIGHT_X_Y[1])
     painter.draw_string(QUOTE_X_Y[0], QUOTE_X_Y[1],
-                       u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
+                        u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
     painter.draw_rect(RECT_X_Y_W_H[0], RECT_X_Y_W_H[1], RECT_X_Y_W_H[2], RECT_X_Y_W_H[3])
     painter.set_font(DEFAULT_FONT_PATH, 10)
     painter.draw_string(CHT_IN_RECT_X_Y[0], CHT_IN_RECT_X_Y[1], u'印')
@@ -172,19 +172,19 @@ def draw_info_box(painter,
     y_begin -= TITLE_Y_INTERVAL
     painter.draw_string(TITLE_START[0], y_begin, u'三、')
     painter.draw_string(TITLE_START[0]+CC_RECEIVER_FIX_X_Y[0],
-                       y_begin+CC_RECEIVER_FIX_X_Y[1], u'副 本')
+                        y_begin+CC_RECEIVER_FIX_X_Y[1], u'副 本')
     painter.draw_string(TITLE_START[0]+CC_RECEIVER_FIX_X_Y[0],
-                       y_begin-CC_RECEIVER_FIX_X_Y[1], u'收件人')
+                        y_begin-CC_RECEIVER_FIX_X_Y[1], u'收件人')
     y_begin = fill_name_address_in_info_box(painter,
                                             x_begin, y_begin,
                                             cc_list, cc_addr_list)
 
     painter.draw_line(BOX_UPPDERLEFT_X_Y[0], BOX_UPPDERLEFT_X_Y[1],
-                     BOX_UPPDERLEFT_X_Y[0], y_begin)  # left
+                      BOX_UPPDERLEFT_X_Y[0], y_begin)  # left
     painter.draw_line(BOX_UPPDERLEFT_X_Y[0], y_begin,
-                     BOX_UPPDERRIGHT_X_Y[0], y_begin)  # buttom
+                      BOX_UPPDERRIGHT_X_Y[0], y_begin)  # buttom
     painter.draw_line(BOX_UPPDERRIGHT_X_Y[0], BOX_UPPDERRIGHT_X_Y[1],
-                     BOX_UPPDERRIGHT_X_Y[0], y_begin)  # right
+                      BOX_UPPDERRIGHT_X_Y[0], y_begin)  # right
 
 def fill_name_address_in_info_box(painter, x_begin, y_begin, namelist, addresslist):
     max_count = max(len(namelist), len(addresslist))
@@ -208,12 +208,12 @@ def fill_name_address_on_first_page(painter, namelist, addresslist, type_):
     if len(namelist) == 1:
         all_name = ' '.join(namelist[0])
         painter.draw_string(NAME_COORDINATE[type_+'_x_y_begin'][0],
-                           NAME_COORDINATE[type_+'_x_y_begin'][1],
-                           all_name)
+                            NAME_COORDINATE[type_+'_x_y_begin'][1],
+                            all_name)
     if len(addresslist) == 1:
         painter.draw_string(ADDR_COORDINATE[type_+'_x_y_begin'][0],
-                           ADDR_COORDINATE[type_+'_x_y_begin'][1],
-                           addresslist[0])
+                            ADDR_COORDINATE[type_+'_x_y_begin'][1],
+                            addresslist[0])
 
 ##############################
 ### Main program goes here
