@@ -17,21 +17,21 @@ class PDFPainter:
         self.__canvas.setFillColorRGB(0, 0, 0)
         self.__font_size = _DEFAULT_FONT_SIZE
 
-    def setFont(self, fontPath, fontSize=_DEFAULT_FONT_SIZE):
+    def set_font(self, fontPath, fontSize=_DEFAULT_FONT_SIZE):
         pdfmetrics.registerFont(TTFont(_DEFAULT_FONT_NAME, fontPath))
         self.__font_size = fontSize
         self.__canvas.setFont(_DEFAULT_FONT_NAME, self.__font_size * _POINT)
 
-    def drawString(self, x, y, text):
+    def draw_string(self, x, y, text):
         self.__canvas.drawString(x, y, text)
 
-    def drawLine(self, x_begin, y_begin, x_end, y_end):
+    def draw_line(self, x_begin, y_begin, x_end, y_end):
         self.__canvas.line(x_begin, y_begin, x_end, y_end)
 
-    def drawRect(self, x, y, width, height):
+    def draw_rect(self, x, y, width, height):
         self.__canvas.rect(x, y, width, height)
 
-    def endThisPage(self):
+    def end_this_page(self):
         self.__canvas.showPage()
         # keep the font setting
         self.__canvas.setFont(_DEFAULT_FONT_NAME, self.__font_size * _POINT)
