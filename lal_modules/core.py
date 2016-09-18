@@ -60,9 +60,9 @@ def generate_text_and_letter(senders, senders_addr,
 
 def _is_only_one_name_or_address(namelist, addresslist):
     ret_value = True
-    if len(namelist) != 0:
+    if namelist:
         ret_value = ret_value and (len(namelist) == 1)
-    if len(addresslist) != 0:
+    if addresslist:
         ret_value = ret_value and (len(addresslist) == 1)
     return ret_value
 
