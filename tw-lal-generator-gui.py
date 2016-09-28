@@ -8,19 +8,26 @@ window = tkinter.Tk()
 window.title('台灣郵局存證信函產生器 ' + version)
 window.geometry('600x600')
 
-mainframe = tkinter.Frame(window)
-
-
 menubar = tkinter.Menu(window)
 m_file = tkinter.Menu(menubar)
+m_file.add_command(label='開啟舊檔', command=window.quit)
+m_file.add_separator()
+m_file.add_command(label='存檔', command=window.quit)
+m_file.add_command(label='另存新檔...', command=window.quit)
+m_file.add_separator()
+m_file.add_command(label='匯出成PDF...', command=window.quit)
+m_file.add_separator()
 m_file.add_command(label='關閉', command=window.quit)
 menubar.add_cascade(label='檔案', menu=m_file)
 window.config(menu=menubar)
 
-
+mainframe = tkinter.Frame(window)
 
 info_frame = tkinter.LabelFrame(mainframe, text='姓名與地址資訊')
 info_text = tkinter.Text(info_frame, height=10)
+info_scroll = tkinter.Scrollbar(info_frame, orient='vertical', command=info_text.yview)
+info_text['yscrollcommand'] = info_scroll.set
+info_scroll.pack(side='right', fill='y')
 info_text.pack()
 info_frame.pack()
 #info_text.config(state='disable')
@@ -36,9 +43,11 @@ button_frame.pack()
 
 article_frame = tkinter.LabelFrame(mainframe, text='內文')
 article_text = tkinter.Text(article_frame)
+article_scroll = tkinter.Scrollbar(article_frame, orient='vertical', command=article_text.yview)
+article_text['yscrollcommand'] = article_scroll.set
+article_scroll.pack(side='right', fill='y')
 article_text.pack(fill='both', expand='yes')
 article_frame.pack(fill='both', expand='yes')
-
 
 mainframe.pack(fill='both', expand='yes')
 window.mainloop()
