@@ -1,8 +1,23 @@
 #!/usr/local/bin/python3
-
 import tkinter
+from lal_modules import core
 
 version = 'v1.1.1'
+
+def export_to_pdf():
+    senders = []
+    senders_addr = []
+    receivers = []
+    receivers_addr = []
+    ccs = []
+    cc_addr = []
+    text = article_text.get("1.0", 'end')
+    core.generate_text_and_letter(senders, senders_addr,
+                                  receivers, receivers_addr,
+                                  ccs, cc_addr,
+                                  text)
+    core.merge_text_and_letter('output.pdf')
+    core.clean_temp_files()
 
 window = tkinter.Tk()
 window.title('台灣郵局存證信函產生器 ' + version)
@@ -15,7 +30,7 @@ m_file.add_separator()
 m_file.add_command(label='存檔', command=window.quit)
 m_file.add_command(label='另存新檔...', command=window.quit)
 m_file.add_separator()
-m_file.add_command(label='匯出成PDF...', command=window.quit)
+m_file.add_command(label='匯出成PDF...', command=export_to_pdf)
 m_file.add_separator()
 m_file.add_command(label='關閉', command=window.quit)
 menubar.add_cascade(label='檔案', menu=m_file)
