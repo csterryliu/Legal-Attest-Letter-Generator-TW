@@ -1,5 +1,6 @@
 #!/usr/local/bin/python3
 import tkinter
+from tkinter import filedialog
 from lal_modules import core
 
 version = 'v2.1.1'
@@ -17,6 +18,14 @@ target_lists = {
     '副本收件人': (ccs, cc_addr)
 }
 
+def open_old_file():
+    filepath = tkinter.filedialog.askopenfilename(
+                filetypes =(("Text File", "*.txt"),("All Files","*.*")),
+                title = "開啟舊檔")
+    content = core.read_main_article(filepath)
+    article_text.delete('1.0', 'end')
+    article_text.insert('end', content)
+
 def export_to_pdf(sender_list, sender_addr_list,
                   receiver_list, receiver_addr_list,
                   cc_list, cc_addr_list):
@@ -28,7 +37,7 @@ def export_to_pdf(sender_list, sender_addr_list,
     core.merge_text_and_letter('output.pdf')
     core.clean_temp_files()
 
-def add_info(genre):
+def dialog_add_info(genre):
     dialog = tkinter.Toplevel()
     dialog.title('新增' + genre + '資訊')
     frame = tkinter.Frame(dialog)
@@ -84,7 +93,7 @@ window.geometry('600x600')
 
 menubar = tkinter.Menu(window)
 m_file = tkinter.Menu(menubar)
-m_file.add_command(label='開啟舊檔', command=window.quit)
+m_file.add_command(label='開啟舊檔', command=open_old_file)
 m_file.add_separator()
 m_file.add_command(label='存檔', command=window.quit)
 m_file.add_command(label='另存新檔...', command=window.quit)
@@ -101,7 +110,7 @@ window.config(menu=menubar)
 mainframe = tkinter.Frame(window)
 
 info_frame = tkinter.LabelFrame(mainframe, text='姓名與地址資訊')
-info_text = tkinter.Text(info_frame, height=10, state='disable')
+info_text = tkinter.Text(info_frame, height=10, state='disable', font=('Arial', 14))
 info_scroll = tkinter.Scrollbar(info_frame, orient='vertical',
                                 command=info_text.yview)
 info_text['yscrollcommand'] = info_scroll.set
@@ -109,22 +118,21 @@ show_info(target_lists)
 info_scroll.pack(side='right', fill='y')
 info_text.pack()
 info_frame.pack()
-#info_text.config(state='disable')
 
 button_frame = tkinter.Frame(mainframe)
 btn_add_sender = tkinter.Button(button_frame, text='新增寄件人資訊...',
-                                command=lambda: add_info('寄件人'))
+                                command=lambda: dialog_add_info('寄件人'))
 btn_add_recver = tkinter.Button(button_frame, text='新增收件人資訊...',
-                                command=lambda: add_info('收件人'))
+                                command=lambda: dialog_add_info('收件人'))
 btn_add_cc = tkinter.Button(button_frame, text='新增副本收件人資訊...',
-                            command=lambda: add_info('副本收件人'))
+                            command=lambda: dialog_add_info('副本收件人'))
 btn_add_sender.grid(column=0, row=0, sticky='E')
 btn_add_recver.grid(column=1, row=0, sticky='E')
 btn_add_cc.grid(column=2, row=0, sticky='E')
 button_frame.pack()
 
 article_frame = tkinter.LabelFrame(mainframe, text='內文')
-article_text = tkinter.Text(article_frame)
+article_text = tkinter.Text(article_frame, font=('Arial', 14))
 article_scroll = tkinter.Scrollbar(article_frame, orient='vertical',
                                   command=article_text.yview)
 article_text['yscrollcommand'] = article_scroll.set
