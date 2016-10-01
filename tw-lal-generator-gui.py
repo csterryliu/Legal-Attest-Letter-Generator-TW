@@ -11,6 +11,12 @@ receivers_addr = []
 ccs = []
 cc_addr = []
 
+target_lists = {
+    '寄件人': (senders, senders_addr),
+    '收件人': (receivers, receivers_addr),
+    '副本收件人': (ccs, cc_addr)
+}
+
 def export_to_pdf(sender_list, sender_addr_list,
                   receiver_list, receiver_addr_list,
                   cc_list, cc_addr_list):
@@ -44,17 +50,33 @@ def add_info(genre):
     dialog.resizable(width=False, height=False)
 
 def fill_info(toplevel, genre, all_name, addr):
-    target_lists = {
-        '寄件人': (senders, senders_addr),
-        '收件人': (receivers, receivers_addr),
-        '副本收件人': (ccs, cc_addr)
-    }
     names = all_name.split(' ')
     target_lists[genre][0].append([])
     for n in names:
         target_lists[genre][0][-1].append(n)
     target_lists[genre][1].append(addr)
+    show_info(target_lists)
     toplevel.destroy()
+
+def show_info(targets):
+    info_text.config(state='normal')
+    info_text.delete('1.0', 'end')
+    for k in ['寄件人', '收件人', '副本收件人']:
+        info_text.insert('end', k + '：\n')
+        insert_all_info(info_text, targets[k][0], targets[k][1])
+    info_text.config(state='disable')
+
+def insert_all_info(text_widget, namelist, addrlist):
+    max_count = max(len(namelist), len(addrlist))
+    if max_count == 0:
+        text_widget.insert('end', '\t\t姓名：\n')
+        text_widget.insert('end', '\t\t詳細地址：\n')
+
+    for i in range(max_count):
+        all_name = ' '.join(namelist[i]) if i <= len(namelist)-1 else ''
+        text_widget.insert('end', '\t\t姓名： ' + all_name + '\n')
+        address = addrlist[i] if i <= len(addrlist)-1 else ''
+        text_widget.insert('end', '\t\t詳細地址： ' + address + '\n')
 
 window = tkinter.Tk()
 window.title('台灣郵局存證信函產生器 ' + version)
@@ -79,10 +101,11 @@ window.config(menu=menubar)
 mainframe = tkinter.Frame(window)
 
 info_frame = tkinter.LabelFrame(mainframe, text='姓名與地址資訊')
-info_text = tkinter.Text(info_frame, height=10)
+info_text = tkinter.Text(info_frame, height=10, state='disable')
 info_scroll = tkinter.Scrollbar(info_frame, orient='vertical',
                                 command=info_text.yview)
 info_text['yscrollcommand'] = info_scroll.set
+show_info(target_lists)
 info_scroll.pack(side='right', fill='y')
 info_text.pack()
 info_frame.pack()
