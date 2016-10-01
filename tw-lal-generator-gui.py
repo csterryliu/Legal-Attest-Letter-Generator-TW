@@ -4,6 +4,8 @@ from tkinter import filedialog
 from lal_modules import core
 
 version = 'v2.1.1'
+program_title = '台灣郵局存證信函產生器 ' + version
+opened_filename = None
 
 senders = []
 senders_addr = []
@@ -19,12 +21,47 @@ target_lists = {
 }
 
 def open_old_file():
-    filepath = tkinter.filedialog.askopenfilename(
+    global opened_filename
+    temp = opened_filename
+    opened_filename = tkinter.filedialog.askopenfilename(
                 filetypes =(("Text File", "*.txt"),("All Files","*.*")),
                 title = "開啟舊檔")
-    content = core.read_main_article(filepath)
+    if not opened_filename:
+        opened_filename = temp
+        return
+    content = core.read_main_article(opened_filename)
     article_text.delete('1.0', 'end')
     article_text.insert('end', content)
+    window.title(opened_filename + ' - ' + program_title)
+
+def save_current_file():
+    global opened_filename
+    temp = opened_filename
+    if opened_filename is None:
+        opened_filename = tkinter.filedialog.asksaveasfilename(
+                    filetypes =(("Text File", "*.txt"),("All Files","*.*")),
+                    title = "存檔")
+    if not opened_filename:
+        opened_filename = temp
+        return
+    window.title(opened_filename + ' - ' + program_title)
+    current_text = article_text.get('1.0', 'end')
+    with open(opened_filename, 'w', encoding='utf-8') as text_file:
+        text_file.write(current_text)
+
+def save_to_new_file():
+    global opened_filename
+    temp = opened_filename
+    opened_filename = tkinter.filedialog.asksaveasfilename(
+                filetypes =(("Text File", "*.txt"),("All Files","*.*")),
+                title = "存檔")
+    if not opened_filename:
+        opened_filename = temp
+        return
+    window.title(opened_filename + ' - ' + program_title)
+    current_text = article_text.get('1.0', 'end')
+    with open(opened_filename, 'w', encoding='utf-8') as text_file:
+        text_file.write(current_text)
 
 def export_to_pdf(sender_list, sender_addr_list,
                   receiver_list, receiver_addr_list,
@@ -95,8 +132,8 @@ menubar = tkinter.Menu(window)
 m_file = tkinter.Menu(menubar)
 m_file.add_command(label='開啟舊檔', command=open_old_file)
 m_file.add_separator()
-m_file.add_command(label='存檔', command=window.quit)
-m_file.add_command(label='另存新檔...', command=window.quit)
+m_file.add_command(label='存檔', command=save_current_file)
+m_file.add_command(label='另存新檔...', command=save_to_new_file)
 m_file.add_separator()
 m_file.add_command(label='匯出成PDF...',
                    command=lambda: export_to_pdf(senders, senders_addr,
