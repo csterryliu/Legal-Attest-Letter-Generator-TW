@@ -4,17 +4,20 @@ from lal_modules import core
 
 version = 'v2.1.1'
 
-def export_to_pdf():
-    senders = []
-    senders_addr = []
-    receivers = []
-    receivers_addr = []
-    ccs = []
-    cc_addr = []
+senders = []
+senders_addr = []
+receivers = []
+receivers_addr = []
+ccs = []
+cc_addr = []
+
+def export_to_pdf(sender_list, sender_addr_list,
+                  receiver_list, receiver_addr_list,
+                  cc_list, cc_addr_list):
     text = article_text.get("1.0", 'end')
-    core.generate_text_and_letter(senders, senders_addr,
-                                  receivers, receivers_addr,
-                                  ccs, cc_addr,
+    core.generate_text_and_letter(sender_list, sender_addr_list,
+                                  receiver_list, receiver_addr_list,
+                                  cc_list, cc_addr_list,
                                   text)
     core.merge_text_and_letter('output.pdf')
     core.clean_temp_files()
@@ -31,11 +34,27 @@ def add_info(genre):
     addr_entry = tkinter.Entry(frame, width=40)
     name_entry.grid(row=0, column=1)
     addr_entry.grid(row=1, column=1)
-    btn_ok = tkinter.Button(frame, text='OK')
+    btn_ok = tkinter.Button(frame, text='OK',
+                            command=lambda: fill_info(dialog, genre,
+                                                      name_entry.get(),
+                                                      addr_entry.get()))
     btn_ok.grid(row=2, columnspan=2)
     frame.pack()
     dialog.grab_set()
     dialog.resizable(width=False, height=False)
+
+def fill_info(toplevel, genre, all_name, addr):
+    target_lists = {
+        '寄件人': (senders, senders_addr),
+        '收件人': (receivers, receivers_addr),
+        '副本收件人': (ccs, cc_addr)
+    }
+    names = all_name.split(' ')
+    target_lists[genre][0].append([])
+    for n in names:
+        target_lists[genre][0][-1].append(n)
+    target_lists[genre][1].append(addr)
+    toplevel.destroy()
 
 window = tkinter.Tk()
 window.title('台灣郵局存證信函產生器 ' + version)
@@ -48,7 +67,10 @@ m_file.add_separator()
 m_file.add_command(label='存檔', command=window.quit)
 m_file.add_command(label='另存新檔...', command=window.quit)
 m_file.add_separator()
-m_file.add_command(label='匯出成PDF...', command=export_to_pdf)
+m_file.add_command(label='匯出成PDF...',
+                   command=lambda: export_to_pdf(senders, senders_addr,
+                                                 receivers, receivers_addr,
+                                                 ccs, cc_addr))
 m_file.add_separator()
 m_file.add_command(label='關閉', command=window.quit)
 menubar.add_cascade(label='檔案', menu=m_file)
