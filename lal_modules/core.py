@@ -9,9 +9,16 @@ from .constants import *
 def read_main_article(filepath):
     codec_name = 'utf-8'
     bom = b'\xef\xbb\xbf'.decode(codec_name)
-    text_file = open(filepath, 'r', encoding=codec_name)
-    text = text_file.read()
-    text_file.close()
+    try:
+        text_file = open(filepath, 'r', encoding=codec_name)
+        text = text_file.read()
+        text_file.close()
+    except UnicodeDecodeError:
+        print('Failed to read file.')
+        return None
+    except FileNotFoundError:
+        print('File not found.')
+        return None
     # In case the user insists on using Notepad of Windows, remove BOM
     text = text.lstrip(bom)
     return text

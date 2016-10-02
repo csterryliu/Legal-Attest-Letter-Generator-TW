@@ -11,6 +11,8 @@ def main():
     ccs = args.ccName
     cc_addr = args.ccAddr
     text = core.read_main_article(args.article_file)
+    if not text:
+        return
     output_filename = args.outputFileName
 
     core.generate_text_and_letter(senders, senders_addr,
