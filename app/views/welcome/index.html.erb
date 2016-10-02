@@ -34,19 +34,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
               <%= label_tag '寄件人姓名' %>
               <%= text_field_tag 'senderName' %>
-
               <%= label_tag '寄件人詳細地址' %>
               <%= text_field_tag 'senderAddr' %>
               <%= label_tag '收件人姓名' %>
               <%= text_field_tag 'receiverName' %>
               <%= label_tag '收件人詳細地址' %>
               <%= text_field_tag 'receiverAddr' %>
-
               <%= label_tag '副本收件人姓名' %>
               <%= text_field_tag 'ccName' %>
-
               <%= label_tag '副本收件人詳細地址' %>
               <%= text_field_tag 'ccAddr' %>
+              <%= label_tag '內文' %>
+              <%= text_area_tag 'innerText' %>
 
             <div><%= submit_tag '產生文件' %></div>
           <% end %>

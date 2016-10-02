@@ -3,6 +3,8 @@ require 'securerandom'
 class WelcomeController < ApplicationController
 
 	def generate_pdf
+		@name = SecureRandom.hex(13)
+
 		senderName = params[:senderName]
 		senderAddr = params[:senderAddr]
 		receiverName = params[:receiverName]
@@ -10,8 +12,15 @@ class WelcomeController < ApplicationController
 		ccName = params[:ccName]
 		ccAddr = params[:ccAddr]
 
-		command = "python3 tw-lal-generator.py test.txt"
-		
+		# write text into a file
+		path = "public/download/#{@name}.txt"
+		innerText = params[:innerText]
+		File.open(path, "w+") do |f|
+		  f.write(innerText)
+		end
+
+		command = "python3 tw-lal-generator.py ../#{path}"
+
 		if senderName != ''
 			command << " --senderName #{senderName}"
 		end
@@ -31,12 +40,8 @@ class WelcomeController < ApplicationController
 			command << " --ccAddr #{ccAddr}"
 		end
 
-		@name = SecureRandom.hex(13)
-
 		@result = %x(cd python ; #{command} --outputFileName ../public/download/#{@name}.pdf 2>&1)
 
-
-		#@result = %x(cd python ; python3 tw-lal-generator.py test.txt --senderName #{senderName} --senderAddr #{senderAddr} --receiverName #{receiverName} --receiverAddr #{receiverAddr} --ccName #{ccName} --ccAddr #{ccAddr} --outputFileName ../public/download/#{@name}.pdf 2>&1)
 		send_file( Rails.root.join('public/download', "#{@name}.pdf"), type: 'application/pdf')
 	end
 
