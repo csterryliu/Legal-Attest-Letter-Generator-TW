@@ -1,6 +1,7 @@
 #!/usr/local/bin/python3
 import tkinter
 from tkinter import filedialog
+import threading
 from lal_modules import core
 
 version = 'v2.1.1'
@@ -19,6 +20,27 @@ target_lists = {
     '收件人': (receivers, receivers_addr),
     '副本收件人': (ccs, cc_addr)
 }
+
+def start_working(sender_list, sender_addr_list,
+                  receiver_list, receiver_addr_list,
+                  cc_list, cc_addr_list, text, output):
+    status_label.config(text='工作中...')
+    change_widgets_state('disable')
+    core.generate_text_and_letter(sender_list, sender_addr_list,
+                                  receiver_list, receiver_addr_list,
+                                  cc_list, cc_addr_list,
+                                  text)
+    core.merge_text_and_letter(output)
+    core.clean_temp_files()
+    change_widgets_state('normal')
+    status_label.config(text='檔案已匯出至：' + output)
+
+def change_widgets_state(mode):
+    menubar.entryconfig('檔案', state=mode)
+    btn_add_cc.config(state=mode)
+    btn_add_recver.config(state=mode)
+    btn_add_sender.config(state=mode)
+    article_text.config(state=mode)
 
 def open_old_file():
     global opened_filename
@@ -66,13 +88,16 @@ def save_to_new_file():
 def export_to_pdf(sender_list, sender_addr_list,
                   receiver_list, receiver_addr_list,
                   cc_list, cc_addr_list):
+    output_filename = tkinter.filedialog.asksaveasfilename(
+                filetypes =(("PDF File", "*.pdf"),("All Files","*.*")),
+                title = "匯出至PDF")
+    if not output_filename:
+        return
     text = article_text.get("1.0", 'end')
-    core.generate_text_and_letter(sender_list, sender_addr_list,
-                                  receiver_list, receiver_addr_list,
-                                  cc_list, cc_addr_list,
-                                  text)
-    core.merge_text_and_letter('output.pdf')
-    core.clean_temp_files()
+    threading.Thread(target=start_working,
+                     args=(sender_list, sender_addr_list,
+                           receiver_list, receiver_addr_list,
+                           cc_list, cc_addr_list, text, output_filename)).start()
 
 def dialog_add_info(genre):
     dialog = tkinter.Toplevel()
@@ -126,7 +151,7 @@ def insert_all_info(text_widget, namelist, addrlist):
 
 window = tkinter.Tk()
 window.title('台灣郵局存證信函產生器 ' + version)
-window.geometry('600x600')
+window.geometry('600x700')
 
 menubar = tkinter.Menu(window)
 m_file = tkinter.Menu(menubar)
@@ -176,6 +201,9 @@ article_text['yscrollcommand'] = article_scroll.set
 article_scroll.pack(side='right', fill='y')
 article_text.pack(fill='both', expand='yes')
 article_frame.pack(fill='both', expand='yes')
+
+status_label = tkinter.Label(mainframe, text='就緒')
+status_label.pack(side='right')
 
 mainframe.pack(fill='both', expand='yes')
 window.mainloop()
