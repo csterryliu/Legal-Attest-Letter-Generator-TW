@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+
 /*--- reset code ---*/
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
 	margin:0;
@@ -36,6 +37,7 @@ table {
 /* start editing from here */
 a {
 	text-decoration:none;
+	color:#fff;
 }
 .txt-rt {
 	text-align:right;
@@ -79,615 +81,641 @@ img {
 }
 
 /*--- end reset code ---*/
-
 body {
 	background:image-url("banner.jpg");
-	background-repeat:no-repeat;
-	background-position:center;
-	background-attachment:fixed;
-	background-size:100% 100%;
-	-webkit-background-size:100% 100%;
-	-moz-background-size:100% 100%;
-	-o-background-size:100% 100%;
-	-ms-background-size:100% 100%;
-	font-family: 'Muli', sans-serif;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+	font-family: 'Poiret One', cursive;
 }
-/** fonts used for the icons **/
-@font-face {
-    font-family: 'FontomasCustomRegular';
-    src: url('../fonts/fontomas-webfont.eot');
-    src: url('../fonts/fontomas-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/fontomas-webfont.woff') format('woff'),
-         url('../fonts/fontomas-webfont.ttf') format('truetype'),
-         url('../fonts/fontomas-webfont.svg#FontomasCustomRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-h1.w3ls {
-    font-size: 45px;
-    font-weight: 600;
-    padding: 50px 0;
-    color: #fff;
+h1.header-agileits {
     text-align: center;
-    text-transform: uppercase;
-    font-family: 'Comfortaa', cursive;
-}
-a.hiddenanchor{
-	display: none;
-}
-/** The wrapper that will contain our two forms **/
-#wrapper{
-	width: 60%;
-	right: 0px;
-	min-height: 560px;
-	margin:0 auto;
-	width:35%;
-	position: relative;
-}
-/**** Styling the form elements **/
-
-/**** general text styling ****/
-#wrapper a{
-	color: rgb(95, 155, 198);
-	text-decoration: underline;
-}
-
-#wrapper h2{
-	font-size: 40px;
-	color: #fff;
-	padding-top:5px;
-	font-weight:100;
-	text-transform: capitalize;
-	text-align: center;
-	padding-bottom: 30px;
-	font-family: 'Comfortaa', cursive;
-}
-#wrapper h2:after{
-	content: ' ';
-	display: block;
-	width: 100%;
-	height: 2px;
-	margin-top: 25px;
-	background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(255, 255, 255, 0.8)), color-stop(53%,rgb(255, 255, 255)), color-stop(79%,rgba(255, 255, 255, 0.8)), color-stop(100%,rgba(147,184,189,0)));
-	background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
-	background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
-	background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
-	background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
-}
-
-#wrapper p{
-	margin-bottom:15px;
-}
-#wrapper p:first-child{
-	margin: 0px;
-}
-#wrapper label{
-	color:#fff;
-	position: relative;
-}
-
-/**** advanced input styling ****/
-/* placeholder */
-::-webkit-input-placeholder  {
-	color:#fff;
-}
-input:-moz-placeholder,
-textarea:-moz-placeholder{
-	color:#fff;
-}
-input {
-  outline: none;
-}
-label.uname span,label.youpasswd span,label.youmail span {
-    font-size: 16px;
-    font-weight: normal;
-    text-transform:uppercase;
-}
-/* all the input except submit and checkbox */
-#wrapper input:not([type="checkbox"]){
-	width: 91%;
-	letter-spacing:1px;
-	color:#fff;
-    margin-top: 10px;
-    background-color: rgba(255, 255, 255, 0.39);
-    margin-bottom: 20px;
-    outline: none;
-    padding: 10px 5px 10px 35px;
-    border: 1px solid rgba(178, 178, 178, 0);
-    font-family: 'Comfortaa', cursive;
-    -webkit-appearance: textfield;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    -webkit-transition: all 0.2s linear;
-    -moz-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear;
-    transition: all 0.2s linear;
-}
-#wrapper input:not([type="checkbox"]):active,
-#wrapper input:not([type="checkbox"]):focus{
-	border: 1px solid rgba(91, 90, 90, 0.7);
-	background: rgba(238, 236, 240, 0.2);
-	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
-	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
-	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
-}
-#wrapper input:not([type="checkbox"]):active::-webkit-input-placeholder,
-#wrapper input:not([type="checkbox"]):focus::-webkit-input-placeholder  {
-	color:#fff!important;
-}
-#wrapper input:not([type="checkbox"]):active input:-moz-placeholder,#wrapper input:not([type="checkbox"]):focus input:-moz-placeholder,
-#wrapper input:not([type="checkbox"]):active textarea:-moz-placeholder,#wrapper input:not([type="checkbox"]):focus textarea:-moz-placeholder {
-	color:#fff!important;
-}
-/** the magic icon trick ! **/
-[data-icon]:after {
-    content: attr(data-icon);
-    font-family: 'FontomasCustomRegular';
-    color:rgb(77, 218, 76);
-    position: absolute;
-    left: 10px;
-    top: 42px;
-	width: 30px;
-}
-
-/*styling both submit buttons */
-#wrapper p.button input{
-	width:100%;
-	cursor: pointer;
-	background:transparent;
-	padding: 8px 0;
-	color: #fff;
-	font-size: 24px;
-	border: 2px solid #fff;
-	margin-bottom: 10px;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-	-webkit-border-radius: 3px;
-	   -moz-border-radius: 3px;
-	        border-radius: 3px;
-	-webkit-transition: all 0.2s linear;
-	   -moz-transition: all 0.2s linear;
-	     -o-transition: all 0.2s linear;
-	        transition: all 0.2s linear;
-}
-#wrapper p.button input:hover{
-	background:rgb(77, 218, 76);
-	border: 2px solid rgb(77, 218, 76);
-}
-#wrapper p.button input:active,
-#wrapper p.button input:focus{
-	background:rgb(77, 218, 76);
-	position: relative;
-	top: 1px;
-	border: 2px solid rgb(77, 218, 76);
-	-webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
-	   -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
-	        box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
-}
-p.login.button,
-p.signin.button{
-	text-align:center;
-	margin: 5px 0;
-}
-
-
-/* styling the checkbox "keep me logged in"*/
-.keeplogin {
-	margin-top: -5px;
-}
-.keeplogin input[type="checkbox"] {
-    display: none;
-}
-.keeplogin input[type="checkbox"]+label {
-    position: relative;
-    padding-left: 2em;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    color: #999;
-    font-weight: 400;
-    cursor: pointer;
-}
-.keeplogin input[type="checkbox"]+label span:first-child {
-    width: 14px;
-    height: 14px;
-    border: 2px solid #C8C8C8;
-    position: absolute;
-    left: 0;
-	top: 1px;
-}
-.keeplogin input[type="checkbox"]:checked+label span:first-child:before {
-    content: "";
-    background: image-url("tick.png")no-repeat;
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    font-size: 10px;
-    width: 10px;
-    height: 10px;
-}
-
-/*styling the links to change from one form to another */
-
-p.change_link{
-	position: absolute;
-    color: #fff;
-    left: 0px;
-    height: 80px;
-    width: 100%;
-    text-align: center;
-    border-top: 1px solid rgb(219, 229, 232);
-    background: rgb(38, 38, 34);
-}
-#wrapper p.change_link span {
-    display: inline-block;
-    margin-top: 31px;
-}
-#wrapper p.change_link a {
-    display: inline-block;
+    font-size: 50px;
     font-weight: bold;
-    font-size: 20px;
-	margin-top:-5px;
-	vertical-align:middle;
-    background: rgb(247, 248, 241);
-    padding: 8px 20px;
-    color: rgb(77, 218, 76);
-    margin-left:185px;
-    text-decoration: none;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    border: 1px solid  rgb(77, 218, 76);
-    -webkit-transition: all 0.4s linear;
-    -moz-transition: all 0.4s linear;
-    -o-transition: all 0.4s linear;
-    -ms-transition: all 0.4s linear;
-    transition: all 0.4s linear;
+    padding-top: 35px;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 8px;
 }
-#wrapper p.change_link a:hover {
+p.header-agileits {
+	font-size: 17px;
+    font-weight: normal;
+    line-height: 35px;
+    margin-bottom: 45px;
+    color: #dcdcdc;
+    text-align: center;
+}
+.content-w3ls {
+	width: 72%;
+    margin: 20px auto 50px;
+    background-color: rgba(3, 9, 12, 0.78);
+    border: 1px solid #ffffff;
+    padding:50px;
+}
+.form-wthree1 {
+	margin:0;
+	padding:0;
+	width:45%;
+	float:left;
+}
+.form-wthree2 {
+	margin:0;
+	padding:0;
+	width:45%;
+	float:right;
+}
+.form-control {
+    padding-bottom: 25px;
+}
+label.header {
+    font-size: 17px;
+    width:195px;
+    font-weight: 500;
+    color: #fff;
+    text-align: justify;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 10px;
+	position:relative;
+}
+label.header span {
+	position:absolute;
+	right:15px;
+	top:0;
+}
+input#senderName,input#senderAddr,input#receiverName,input#receiverAddr,input#ccName,input#ccAddr,input#state,input#zip,input#email,input#usrtel,textarea#innerText {
+    border: 1px solid #fff;
+    color: #fff;
+    text-align: justify;
+    outline: none;
+    letter-spacing: 1px;
+    font-size: 17px;
+    font-weight: normal;
+    background-color: rgba(82, 56, 76, 0.15);
+	font-family: 'Poiret One', cursive;
+}
+input#senderName,input#senderAddr,input#receiverName,input#receiverAddr,input#ccName,input#ccAddr,input#state,input#zip,input#email,input#usrtel {
+	height:40px;
+	padding:0 15px;
+	width:55%;
+}
+select {
+	border: 1px solid #fff;
+    color: #fff;
+    text-align: justify;
+    outline: none;
+    letter-spacing: 1px;
+    font-size: 17px;
+    font-weight: normal;
+    background-color: rgba(82, 56, 76, 0.15);
+	height:40px;
+	padding:0 15px;
+	width:60.8%;
+	font-family: 'Poiret One', cursive;
+}
+select option {
+    background-color: #000;
+    color: #fff;
+	font-family: 'Poiret One', cursive;
+}
+label.enquiry {
+	font-size: 17px;
+    width:200px;
+    font-weight: 500;
+    color: #fff;
+    float: left;
+    text-align: justify;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 25px;
+	position:relative;
+}
+label.enquiry span {
+	position:absolute;
+	right:19px;
+	top:0;
+}
+textarea#innerText {
+	height:150px;
+	padding:15px;
+	width:79.9%;
+}
+input::-webkit-input-placeholder {
+color:#fff!important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+color:#fff!important;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+color:#fff!important;
+}
+
+input:-ms-input-placeholder {
+color:#fff!important;
+}
+textarea::-webkit-input-placeholder {
+color:#fff!important;
+}
+
+textarea::-moz-placeholder { /* Firefox 18- */
+color:#fff!important;
+}
+
+textarea::-moz-placeholder {  /* Firefox 19+ */
+color:#fff!important;
+}
+
+textarea::-ms-input-placeholder {
+color:#fff!important;
+}
+.register {
+	background-color:#4d93c7;
+    width:20%;
+	margin-right:10px;
+	margin-left:200px;
+	float:left;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+	letter-spacing:1px;
+    outline: none;
+    font-size:17px;
+    font-weight: normal;
+    text-transform: uppercase;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+	font-family: 'Poiret One', cursive;
+}
+.register:hover {
+	background-color:#36b051;
 	color:#fff;
-	background: rgb(77, 218, 76);
-	border: 1px solid  rgb(77, 218, 76);
 }
-#wrapper p.change_link a:active{
-	position: relative;
-	top: 1px;
+.reset {
+	background-color:#a9922c;
+    width:20%;
+	float:left;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+	letter-spacing:1px;
+    outline: none;
+    font-size:17px;
+    font-weight: normal;
+    text-transform: uppercase;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+	font-family: 'Poiret One', cursive;
 }
-/** Styling both forms **/
-#register,
-#login{
-	position: absolute;
-	top: 0px;
-	width: 88%;
-	padding: 18px 6% 60px 6%;
-	margin: 0 0 35px 0;
-	background:rgba(52, 53, 49, 0.58);
-}
-#register{
-	z-index: 21;
-	opacity: 0;
-}
-#login{
-	z-index: 22;
-}
-#toregister:target ~ #wrapper #register,
-#tologin:target ~ #wrapper #login{
-	z-index: 22;
-	-webkit-animation-delay: .6s;
-	-webkit-animation-timing-function: ease-in;
-	-moz-animation-delay: .6s;
-	-moz-animation-timing-function: ease-in;
-	-o-animation-delay: .6s;
-	-o-animation-timing-function: ease-in;
-	-ms-animation-delay: .6s;
-	-ms-animation-timing-function: ease-in;
-	animation-delay: .6s;
-	animation-timing-function: ease-in;
-	-webkit-animation-name: scaleIn;
-	-moz-animation-name: scaleIn;
-	-ms-animation-name: scaleIn;
-	-o-animation-name: scaleIn;
-	animation-name: scaleIn;
-}
-#toregister:target ~ #wrapper #login,
-#tologin:target ~ #wrapper #register{
-	-webkit-animation-timing-function: ease-out;
-	-moz-animation-timing-function: ease-out;
-	-o-animation-timing-function: ease-out;
-	-ms-animation-timing-function: ease-out;
-	animation-timing-function: ease-out;
-	-webkit-animation-name: scaleOut;
-	-moz-animation-name: scaleOut;
-	-ms-animation-name: scaleOut;
-	-o-animation-name: scaleOut;
-	animation-name: scaleOut;
-}
-
-/** the actual animation, credit where due : http://daneden.me/animate/ ***/
-.animate{
-	-webkit-animation-duration: 0.5s;
-	-webkit-animation-fill-mode: both;
-
-	-moz-animation-duration: 0.5s;
-	-moz-animation-fill-mode: both;
-
-	-o-animation-duration: 0.5s;
-	-o-animation-fill-mode: both;
-
-	-ms-animation-duration: 0.5s;
-	-ms-animation-fill-mode: both;
-
-	animation-duration: 0.5s;
-	animation-fill-mode: both;
-}
-
-/** yerk some ugly IE fixes 'cause I know someone will ask "why does it look ugly in IE?", no matter how many warnings I will put in the article */
-
-.lt8 #wrapper input{
-	padding: 10px 5px 10px 32px;
-    width: 92%;
-}
-.lt8 #wrapper input[type=checkbox]{
-	width: 10px;
-	padding: 0;
-}
-.lt8 #wrapper h2{
-	color: #066A75;
-}
-.lt8 #register{
-	display: none;
-}
-.lt8 p.change_link,
-.ie9 p.change_link{
-	position: absolute;
-	height: 90px;
-	background: transparent;
-}
-
-p.agileits {
-	text-align:center;
-	padding:170px 0 20px;
-	color: #fff;
-	font-size:16px;
-	font-weight:normal;
-}
-p.agileits a {
+.reset:hover {
+	background-color:#36b051;
 	color:#fff;
 }
-p.agileits a:hover {
-	color:red;
+.form-control.last {
+    padding-bottom: 0;
 }
-h1.w3ls a{
-	color:#fff;
+p.copyright {
+    font-size: 17px;
+	font-weight:bold;
+    text-align: center;
+    color: #fff;
+	line-height:30px;
+    padding-bottom: 50px;
+}
+p.copyright a {
+	color:#f15f22;
+}
+p.copyright a:hover {
+	color:#36b051;
+}
+
+/*-- responsive design --*/
+@media (max-width:1600px) {
+.content-w3ls {
+    width: 74%;
+}
+textarea#innerText {
+	width:79.7%;
+}
+select {
+	width:61.2%;
+}
 }
 
 @media (max-width:1440px) {
-	#wrapper {
-	width:40%;
-	}
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+	width:50.9%;
+}
+select {
+    width: 57.5%;
+}
+textarea#innerText {
+    width: 77.9%;
+    float: right;
+}
 }
 
-@media (max-width: 1280px) {
-#wrapper {
-    width: 45%;
+@media (max-width:1366px) {
+label.header {
+	font-size:15px;
+	width:180px;
+}
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    width: 51.5%;
+}
+select {
+    width: 58.6%;
+}
+label.enquiry {
+    font-size: 15px;
+    width: 184px;
+}
+.register {
+	margin-left:189px;
 }
 }
 
-@media (max-width: 1080px) {
-	h1.w3ls {
+@media (max-width:1280px) {
+h1.header-agileits {
 	font-size:40px;
-	padding:40px 0;
-	}
-	#wrapper h2 {
-    font-size: 30px;
 }
-#wrapper {
+label.header span {
+    top: -6px;
+    font-size: 20px;
+}
+label.header {
+    font-size: 14px;
+    width: 175px;
+}
+.form-wthree1,.form-wthree2 {
+	width:47%;
+}
+label.enquiry span {
+    top: -6px;
+    font-size: 20px;
+}
+label.enquiry {
+    font-size: 14px;
+    width: 180px;
+}
+textarea#innerText {
+    width: 77.2%;
+}
+.register {
+    margin-left: 181px;
+}
+}
+
+@media (max-width:1080px) {
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+	font-size:14px;
+	width:43%;
+}
+.content-w3ls {
+    width: 75%;
+	padding:40px;
+}
+select {
+    width: 51.5%;
+    font-size: 14px;
+    padding: 0 11px;
+}
+textarea#innerText {
+    font-size: 14px;
+    width: 73.4%;
+}
+.register {
+	font-size:15px;
+	height:40px;
+	margin-left:180px;
+}
+.reset {
+	font-size:15px;
+	height:40px;
+}
+p.copyright {
+    font-size: 14px;
+	padding-bottom:25px;
+}
+h1.header-agileits {
+    font-size: 35px;
+	padding-top:25px;
+}
+}
+
+@media (max-width: 1050px) {
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 41%;
+}
+select {
     width: 50%;
 }
-label.uname span, label.youpasswd span,label.youmail span {
+textarea#innerText {
     font-size: 14px;
-}
-#wrapper input:not([type="checkbox"]) {
-	font-size:13px;
-}
-.keeplogin input[type="checkbox"]+label {
-	font-size:14px;
-}
-.keeplogin input[type="checkbox"]+label span:first-child {
-    width: 13px;
-    height: 13px;
-    top: 0px;
-}
-#wrapper p.button input {
-	font-size:20px;
-}
-#wrapper p.change_link span {
-	font-size:14px;
-}
-#wrapper p.change_link a {
-	font-size:16px;
-	margin-top:0;
+    width: 72.5%;
 }
 }
 
 @media (max-width: 1024px) {
-h1.w3ls {
-    font-size: 35px;
-    padding: 35px 0;
-}
-#wrapper h2 {
-	padding-top:0;
-}
-#wrapper h2:after {
-	margin-top:20px;
+.content-w3ls {
+    width: 77%;
+    padding: 40px;
 }
 }
 
-@media (max-width:991px) {
-h1.w3ls {
-    font-size: 30px;
+@media (max-width: 991px) {
+.form-wthree1, .form-wthree2 {
+    width: 100%;
 }
-#wrapper h2 {
-    font-size: 26px;
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 71.6%;
 }
-#wrapper input:not([type="checkbox"]) {
-    font-size: 12px;
+select {
+    width: 75.9%;
 }
-#wrapper p.button input {
-    font-size: 18px;
+textarea#innerText {
+    font-size: 14px;
+    width: 71.5%;
 }
-#wrapper p.change_link a {
-	margin-left:145px;
 }
-p.agileits {
-	font-size:14px;
+
+@media (max-width: 900px) {
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 68.6%;
+}
+textarea#innerText {
+    font-size: 14px;
+    width: 68.6%;
+}
+select {
+    width: 73.4%;
+}
+p.copyright {
+    font-size: 14px;
+    padding-bottom: 25px;
+    font-weight: 100;
 }
 }
 
 @media (max-width: 800px) {
-#wrapper {
-    width: 55%;
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 64.5%;
 }
-#wrapper input:not([type="checkbox"]) {
-    width: 89%;
+select {
+    width: 70%;
 }
-#wrapper p.change_link a {
-    margin-left: 100px;
+textarea#innerText {
+    font-size: 14px;
+    width: 64.5%;
+}
+}
+
+@media (max-width: 768px) {
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 63.1%;
+}
+select {
+    width: 68.7%;
+}
+textarea#innerText {
+    font-size: 14px;
+    width: 63.3%;
 }
 }
 
 @media (max-width: 736px) {
-#wrapper input:not([type="checkbox"]) {
-    width: 88%;
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 61.5%;
 }
-#wrapper p.change_link a {
-    margin-left: 67px;
+h1.header-agileits {
+    font-size: 30px;
+    padding-top: 25px;
+}
+select {
+    width: 67.3%;
+}
+textarea#innerText {
+    font-size: 14px;
+    width: 61.6%;
 }
 }
 
 @media (max-width: 667px) {
-#wrapper p.change_link a {
-    margin-left: 30px;
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 57.4%;
+}
+select {
+    width: 63.8%;
+}
+label.enquiry {
+    font-size: 14px;
+    width: 179px;
+}
+textarea#innerText {
+    font-size: 14px;
+    width: 57.5%;
 }
 }
 
-@media (max-width:640px) {
-#wrapper {
-    width: 60%;
+@media (max-width: 640px) {
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 55.5%;
 }
-#wrapper h2 {
-	padding-bottom:20px;
+select {
+    width: 62%;
 }
-#wrapper input:not([type="checkbox"]) {
-	margin-bottom:10px;
+textarea#innerText {
+    font-size: 14px;
+    width: 56%;
 }
-p.agileits {
-	padding:90px 0 20px;
-	line-height:30px;
+.register {
+    font-size: 14px;
+    height: 40px;
+    margin-left: 179px;
+	width:25%;
+}
+.reset {
+	width:25%;
+	font-size:14px;
 }
 }
 
 @media (max-width: 600px) {
-h1.w3ls {
-    font-size: 26px;
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width:54.8%;
 }
-#wrapper h2 {
-    font-size: 22px;
+label.header {
+    font-size: 13px;
+    width: 165px;
 }
-#wrapper {
-    width: 65%;
+label.enquiry {
+    font-size: 13px;
+    width: 169px;
+}
+textarea#innerText {
+    font-size: 14px;
+    width: 55%;
+}
+.register {
+    font-size: 14px;
+    height: 40px;
+    margin-left: 170px;
+    width: 25%;
+}
+.content-w3ls {
+	margin:20px auto;
+}
+}
+
+@media (max-width: 568px) {
+.content-w3ls {
+    width: 77%;
+    padding: 30px 35px;
+}
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 52%;
+}
+select {
+    width: 59.7%;
+}
+textarea#innerText {
+    font-size: 14px;
+    width: 52.5%;
 }
 }
 
 @media (max-width: 480px) {
-#wrapper {
-    width: 70%;
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 43%;
 }
-h1.w3ls {
-    font-size: 24px;
-	padding:30px 0;
+select {
+    width: 52%;
 }
-#wrapper p.change_link a {
-    margin-left: 5px;
+textarea#innerText {
+    font-size: 14px;
+    width: 43%;
 }
-#wrapper p {
-    margin-bottom: 10px;
+.register {
+	width:28%;
+}
+.reset {
+    width: 21%;
 }
 }
 
 @media (max-width: 414px) {
-#wrapper {
-    width: 80%;
+.content-w3ls {
+    width: 70%;
+    padding: 25px 30px;
 }
-#wrapper input:not([type="checkbox"]) {
-	width:86%;
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 88%;
 }
-#wrapper input:not([type="checkbox"]),#wrapper p.button input,#wrapper p.change_link a {
-	z-index:999;
+select {
+    width: 99%;
 }
-label.uname span, label.youpasswd span, label.youmail span {
+textarea#innerText {
+    font-size: 14px;
+    width: 87%;
+    float: none;
+}
+label.enquiry {
+	float:none;
+	margin-bottom:15px;
+}
+.register {
     font-size: 13px;
+    height: 35px;
+    margin-left: 0px;
+    width: 40%;
+}
+.reset {
+	font-size:13px;
+	height:35px;
+	width:40%;
+}
+h1.header-agileits {
+    font-size: 25px;
+    padding-top: 25px;
 }
 }
 
 @media (max-width: 384px) {
-#wrapper p.change_link span {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 7px;
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 14px;
+    width: 87%;
 }
-#wrapper p.change_link a {
-	font-size:15px;
-	padding:5px 15px;
-}
-h1.w3ls {
-    font-size: 22px;
-    padding: 27px 0;
-}
-#wrapper input:not([type="checkbox"]) {
-    font-size: 11px;
-	width:85%;
-}
-}
-
-@media (max-width: 375px) {
-h1.w3ls {
-    font-size: 20px;
-    padding: 27px 0;
-}
-p.agileits {
-    padding: 40px 0px 20px;
+select {
+    width: 99.5%;
 }
 }
 
 @media (max-width: 320px) {
-h1.w3ls {
-    font-size: 19px;
-    padding: 25px 0;
-}
-#wrapper h2 {
+h1.header-agileits {
     font-size: 20px;
-    margin-top: -5px;
-    padding-bottom: 15px;
+    padding-top: 25px;
 }
-#wrapper h2:after {
-    margin-top: 12px;
+.content-w3ls {
+    width: 65%;
+    padding: 25px 25px;
 }
-#wrapper {
-    width: 90%;
+input#senderName, input#senderAddr, input#receiverName, input#receiverAddr, input#ccName, input#ccAddr, input#state, input#zip, input#email, input#usrtel {
+    font-size: 13px;
+    width: 84%;
 }
-#wrapper input:not([type="checkbox"]) {
-	width:84%;
+select {
+    width: 99.7%;
+    font-size: 13px;
 }
-#wrapper p.button input {
-    font-size: 15px;
+textarea#innerText {
+    font-size: 13px;
+    width: 83%;
+    float: none;
 }
-#wrapper p.change_link a {
-    font-size: 14px;
+.register {
+    font-size: 13px;
+    height: 35px;
+    margin-left: 0px;
+    width: 50%;
 }
-p.agileits {
-    padding: 20px 0px;
+.reset {
+	width:43%;
 }
 }
+
+
+
+
+
+
+
+
+
+
+/*-- /responsive design --*/
