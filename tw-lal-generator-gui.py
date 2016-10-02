@@ -52,9 +52,13 @@ def open_old_file():
         opened_filename = temp
         return
     content = core.read_main_article(opened_filename)
+    if not content:
+        status_label.config(text='讀檔錯誤。請開啟以 UTF-8 編碼的純文字檔案')
+        return
     article_text.delete('1.0', 'end')
     article_text.insert('end', content)
     window.title(opened_filename + ' - ' + program_title)
+    status_label.config(text='就緒')
 
 def save_current_file():
     global opened_filename
@@ -70,6 +74,7 @@ def save_current_file():
     current_text = article_text.get('1.0', 'end')
     with open(opened_filename, 'w', encoding='utf-8') as text_file:
         text_file.write(current_text)
+    status_label.config(text='已存檔')
 
 def save_to_new_file():
     global opened_filename
@@ -84,6 +89,7 @@ def save_to_new_file():
     current_text = article_text.get('1.0', 'end')
     with open(opened_filename, 'w', encoding='utf-8') as text_file:
         text_file.write(current_text)
+    status_label.config(text='已存檔')
 
 def export_to_pdf(sender_list, sender_addr_list,
                   receiver_list, receiver_addr_list,
