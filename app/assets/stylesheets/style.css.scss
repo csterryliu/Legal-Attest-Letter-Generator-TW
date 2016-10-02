@@ -1,0 +1,693 @@
+/*--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/*--- reset code ---*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:100%;
+	font:inherit;
+	vertical-align:baseline;
+}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol,ul {
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+blockquote,q {
+	quotes:none;
+}
+blockquote:before,blockquote:after,q:before,q:after {
+	content:'';
+	content:none;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+/* start editing from here */
+a {
+	text-decoration:none;
+}
+.txt-rt {
+	text-align:right;
+}/* text align right */
+.txt-lt {
+	text-align:left;
+}/* text align left */
+.txt-center {
+	text-align:center;
+/*-- W3Layouts --*/
+}/* text align center */
+.float-rt {
+	float:right;
+}/* float right */
+.float-lt {
+	float:left;
+}/* float left */
+.clear {
+	clear:both;
+}/* clear float */
+.pos-relative {
+	position:relative;
+}/* Position Relative */
+.pos-absolute {
+	position:absolute;
+}/* Position Absolute */
+.vertical-base {
+	vertical-align:baseline;
+}/* vertical align baseline */
+.vertical-top {
+	vertical-align:top;
+}/* vertical align top */
+nav.vertical ul li {
+	display:block;
+}/* vertical menu */
+nav.horizontal ul li {
+	display: inline-block;
+}/* horizontal menu */
+img {
+	max-width:100%;
+}
+
+/*--- end reset code ---*/
+
+body {
+	background:image-url("banner.jpg");
+	background-repeat:no-repeat;
+	background-position:center;
+	background-attachment:fixed;
+	background-size:100% 100%;
+	-webkit-background-size:100% 100%;
+	-moz-background-size:100% 100%;
+	-o-background-size:100% 100%;
+	-ms-background-size:100% 100%;
+	font-family: 'Muli', sans-serif;
+}
+/** fonts used for the icons **/
+@font-face {
+    font-family: 'FontomasCustomRegular';
+    src: url('../fonts/fontomas-webfont.eot');
+    src: url('../fonts/fontomas-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/fontomas-webfont.woff') format('woff'),
+         url('../fonts/fontomas-webfont.ttf') format('truetype'),
+         url('../fonts/fontomas-webfont.svg#FontomasCustomRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1.w3ls {
+    font-size: 45px;
+    font-weight: 600;
+    padding: 50px 0;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Comfortaa', cursive;
+}
+a.hiddenanchor{
+	display: none;
+}
+/** The wrapper that will contain our two forms **/
+#wrapper{
+	width: 60%;
+	right: 0px;
+	min-height: 560px;
+	margin:0 auto;
+	width:35%;
+	position: relative;
+}
+/**** Styling the form elements **/
+
+/**** general text styling ****/
+#wrapper a{
+	color: rgb(95, 155, 198);
+	text-decoration: underline;
+}
+
+#wrapper h2{
+	font-size: 40px;
+	color: #fff;
+	padding-top:5px;
+	font-weight:100;
+	text-transform: capitalize;
+	text-align: center;
+	padding-bottom: 30px;
+	font-family: 'Comfortaa', cursive;
+}
+#wrapper h2:after{
+	content: ' ';
+	display: block;
+	width: 100%;
+	height: 2px;
+	margin-top: 25px;
+	background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(255, 255, 255, 0.8)), color-stop(53%,rgb(255, 255, 255)), color-stop(79%,rgba(255, 255, 255, 0.8)), color-stop(100%,rgba(147,184,189,0)));
+	background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+	background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+	background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+	background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+}
+
+#wrapper p{
+	margin-bottom:15px;
+}
+#wrapper p:first-child{
+	margin: 0px;
+}
+#wrapper label{
+	color:#fff;
+	position: relative;
+}
+
+/**** advanced input styling ****/
+/* placeholder */
+::-webkit-input-placeholder  {
+	color:#fff;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder{
+	color:#fff;
+}
+input {
+  outline: none;
+}
+label.uname span,label.youpasswd span,label.youmail span {
+    font-size: 16px;
+    font-weight: normal;
+    text-transform:uppercase;
+}
+/* all the input except submit and checkbox */
+#wrapper input:not([type="checkbox"]){
+	width: 91%;
+	letter-spacing:1px;
+	color:#fff;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.39);
+    margin-bottom: 20px;
+    outline: none;
+    padding: 10px 5px 10px 35px;
+    border: 1px solid rgba(178, 178, 178, 0);
+    font-family: 'Comfortaa', cursive;
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+#wrapper input:not([type="checkbox"]):active,
+#wrapper input:not([type="checkbox"]):focus{
+	border: 1px solid rgba(91, 90, 90, 0.7);
+	background: rgba(238, 236, 240, 0.2);
+	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+}
+#wrapper input:not([type="checkbox"]):active::-webkit-input-placeholder,
+#wrapper input:not([type="checkbox"]):focus::-webkit-input-placeholder  {
+	color:#fff!important;
+}
+#wrapper input:not([type="checkbox"]):active input:-moz-placeholder,#wrapper input:not([type="checkbox"]):focus input:-moz-placeholder,
+#wrapper input:not([type="checkbox"]):active textarea:-moz-placeholder,#wrapper input:not([type="checkbox"]):focus textarea:-moz-placeholder {
+	color:#fff!important;
+}
+/** the magic icon trick ! **/
+[data-icon]:after {
+    content: attr(data-icon);
+    font-family: 'FontomasCustomRegular';
+    color:rgb(77, 218, 76);
+    position: absolute;
+    left: 10px;
+    top: 42px;
+	width: 30px;
+}
+
+/*styling both submit buttons */
+#wrapper p.button input{
+	width:100%;
+	cursor: pointer;
+	background:transparent;
+	padding: 8px 0;
+	color: #fff;
+	font-size: 24px;
+	border: 2px solid #fff;
+	margin-bottom: 10px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+	-webkit-transition: all 0.2s linear;
+	   -moz-transition: all 0.2s linear;
+	     -o-transition: all 0.2s linear;
+	        transition: all 0.2s linear;
+}
+#wrapper p.button input:hover{
+	background:rgb(77, 218, 76);
+	border: 2px solid rgb(77, 218, 76);
+}
+#wrapper p.button input:active,
+#wrapper p.button input:focus{
+	background:rgb(77, 218, 76);
+	position: relative;
+	top: 1px;
+	border: 2px solid rgb(77, 218, 76);
+	-webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+	   -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+	        box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+}
+p.login.button,
+p.signin.button{
+	text-align:center;
+	margin: 5px 0;
+}
+
+
+/* styling the checkbox "keep me logged in"*/
+.keeplogin {
+	margin-top: -5px;
+}
+.keeplogin input[type="checkbox"] {
+    display: none;
+}
+.keeplogin input[type="checkbox"]+label {
+    position: relative;
+    padding-left: 2em;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #999;
+    font-weight: 400;
+    cursor: pointer;
+}
+.keeplogin input[type="checkbox"]+label span:first-child {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #C8C8C8;
+    position: absolute;
+    left: 0;
+	top: 1px;
+}
+.keeplogin input[type="checkbox"]:checked+label span:first-child:before {
+    content: "";
+    background: image-url("tick.png")no-repeat;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    font-size: 10px;
+    width: 10px;
+    height: 10px;
+}
+
+/*styling the links to change from one form to another */
+
+p.change_link{
+	position: absolute;
+    color: #fff;
+    left: 0px;
+    height: 80px;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid rgb(219, 229, 232);
+    background: rgb(38, 38, 34);
+}
+#wrapper p.change_link span {
+    display: inline-block;
+    margin-top: 31px;
+}
+#wrapper p.change_link a {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+	margin-top:-5px;
+	vertical-align:middle;
+    background: rgb(247, 248, 241);
+    padding: 8px 20px;
+    color: rgb(77, 218, 76);
+    margin-left:185px;
+    text-decoration: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid  rgb(77, 218, 76);
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+#wrapper p.change_link a:hover {
+	color:#fff;
+	background: rgb(77, 218, 76);
+	border: 1px solid  rgb(77, 218, 76);
+}
+#wrapper p.change_link a:active{
+	position: relative;
+	top: 1px;
+}
+/** Styling both forms **/
+#register,
+#login{
+	position: absolute;
+	top: 0px;
+	width: 88%;
+	padding: 18px 6% 60px 6%;
+	margin: 0 0 35px 0;
+	background:rgba(52, 53, 49, 0.58);
+}
+#register{
+	z-index: 21;
+	opacity: 0;
+}
+#login{
+	z-index: 22;
+}
+#toregister:target ~ #wrapper #register,
+#tologin:target ~ #wrapper #login{
+	z-index: 22;
+	-webkit-animation-delay: .6s;
+	-webkit-animation-timing-function: ease-in;
+	-moz-animation-delay: .6s;
+	-moz-animation-timing-function: ease-in;
+	-o-animation-delay: .6s;
+	-o-animation-timing-function: ease-in;
+	-ms-animation-delay: .6s;
+	-ms-animation-timing-function: ease-in;
+	animation-delay: .6s;
+	animation-timing-function: ease-in;
+	-webkit-animation-name: scaleIn;
+	-moz-animation-name: scaleIn;
+	-ms-animation-name: scaleIn;
+	-o-animation-name: scaleIn;
+	animation-name: scaleIn;
+}
+#toregister:target ~ #wrapper #login,
+#tologin:target ~ #wrapper #register{
+	-webkit-animation-timing-function: ease-out;
+	-moz-animation-timing-function: ease-out;
+	-o-animation-timing-function: ease-out;
+	-ms-animation-timing-function: ease-out;
+	animation-timing-function: ease-out;
+	-webkit-animation-name: scaleOut;
+	-moz-animation-name: scaleOut;
+	-ms-animation-name: scaleOut;
+	-o-animation-name: scaleOut;
+	animation-name: scaleOut;
+}
+
+/** the actual animation, credit where due : http://daneden.me/animate/ ***/
+.animate{
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-fill-mode: both;
+
+	-moz-animation-duration: 0.5s;
+	-moz-animation-fill-mode: both;
+
+	-o-animation-duration: 0.5s;
+	-o-animation-fill-mode: both;
+
+	-ms-animation-duration: 0.5s;
+	-ms-animation-fill-mode: both;
+
+	animation-duration: 0.5s;
+	animation-fill-mode: both;
+}
+
+/** yerk some ugly IE fixes 'cause I know someone will ask "why does it look ugly in IE?", no matter how many warnings I will put in the article */
+
+.lt8 #wrapper input{
+	padding: 10px 5px 10px 32px;
+    width: 92%;
+}
+.lt8 #wrapper input[type=checkbox]{
+	width: 10px;
+	padding: 0;
+}
+.lt8 #wrapper h2{
+	color: #066A75;
+}
+.lt8 #register{
+	display: none;
+}
+.lt8 p.change_link,
+.ie9 p.change_link{
+	position: absolute;
+	height: 90px;
+	background: transparent;
+}
+
+p.agileits {
+	text-align:center;
+	padding:170px 0 20px;
+	color: #fff;
+	font-size:16px;
+	font-weight:normal;
+}
+p.agileits a {
+	color:#fff;
+}
+p.agileits a:hover {
+	color:red;
+}
+h1.w3ls a{
+	color:#fff;
+}
+
+@media (max-width:1440px) {
+	#wrapper {
+	width:40%;
+	}
+}
+
+@media (max-width: 1280px) {
+#wrapper {
+    width: 45%;
+}
+}
+
+@media (max-width: 1080px) {
+	h1.w3ls {
+	font-size:40px;
+	padding:40px 0;
+	}
+	#wrapper h2 {
+    font-size: 30px;
+}
+#wrapper {
+    width: 50%;
+}
+label.uname span, label.youpasswd span,label.youmail span {
+    font-size: 14px;
+}
+#wrapper input:not([type="checkbox"]) {
+	font-size:13px;
+}
+.keeplogin input[type="checkbox"]+label {
+	font-size:14px;
+}
+.keeplogin input[type="checkbox"]+label span:first-child {
+    width: 13px;
+    height: 13px;
+    top: 0px;
+}
+#wrapper p.button input {
+	font-size:20px;
+}
+#wrapper p.change_link span {
+	font-size:14px;
+}
+#wrapper p.change_link a {
+	font-size:16px;
+	margin-top:0;
+}
+}
+
+@media (max-width: 1024px) {
+h1.w3ls {
+    font-size: 35px;
+    padding: 35px 0;
+}
+#wrapper h2 {
+	padding-top:0;
+}
+#wrapper h2:after {
+	margin-top:20px;
+}
+}
+
+@media (max-width:991px) {
+h1.w3ls {
+    font-size: 30px;
+}
+#wrapper h2 {
+    font-size: 26px;
+}
+#wrapper input:not([type="checkbox"]) {
+    font-size: 12px;
+}
+#wrapper p.button input {
+    font-size: 18px;
+}
+#wrapper p.change_link a {
+	margin-left:145px;
+}
+p.agileits {
+	font-size:14px;
+}
+}
+
+@media (max-width: 800px) {
+#wrapper {
+    width: 55%;
+}
+#wrapper input:not([type="checkbox"]) {
+    width: 89%;
+}
+#wrapper p.change_link a {
+    margin-left: 100px;
+}
+}
+
+@media (max-width: 736px) {
+#wrapper input:not([type="checkbox"]) {
+    width: 88%;
+}
+#wrapper p.change_link a {
+    margin-left: 67px;
+}
+}
+
+@media (max-width: 667px) {
+#wrapper p.change_link a {
+    margin-left: 30px;
+}
+}
+
+@media (max-width:640px) {
+#wrapper {
+    width: 60%;
+}
+#wrapper h2 {
+	padding-bottom:20px;
+}
+#wrapper input:not([type="checkbox"]) {
+	margin-bottom:10px;
+}
+p.agileits {
+	padding:90px 0 20px;
+	line-height:30px;
+}
+}
+
+@media (max-width: 600px) {
+h1.w3ls {
+    font-size: 26px;
+}
+#wrapper h2 {
+    font-size: 22px;
+}
+#wrapper {
+    width: 65%;
+}
+}
+
+@media (max-width: 480px) {
+#wrapper {
+    width: 70%;
+}
+h1.w3ls {
+    font-size: 24px;
+	padding:30px 0;
+}
+#wrapper p.change_link a {
+    margin-left: 5px;
+}
+#wrapper p {
+    margin-bottom: 10px;
+}
+}
+
+@media (max-width: 414px) {
+#wrapper {
+    width: 80%;
+}
+#wrapper input:not([type="checkbox"]) {
+	width:86%;
+}
+#wrapper input:not([type="checkbox"]),#wrapper p.button input,#wrapper p.change_link a {
+	z-index:999;
+}
+label.uname span, label.youpasswd span, label.youmail span {
+    font-size: 13px;
+}
+}
+
+@media (max-width: 384px) {
+#wrapper p.change_link span {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+#wrapper p.change_link a {
+	font-size:15px;
+	padding:5px 15px;
+}
+h1.w3ls {
+    font-size: 22px;
+    padding: 27px 0;
+}
+#wrapper input:not([type="checkbox"]) {
+    font-size: 11px;
+	width:85%;
+}
+}
+
+@media (max-width: 375px) {
+h1.w3ls {
+    font-size: 20px;
+    padding: 27px 0;
+}
+p.agileits {
+    padding: 40px 0px 20px;
+}
+}
+
+@media (max-width: 320px) {
+h1.w3ls {
+    font-size: 19px;
+    padding: 25px 0;
+}
+#wrapper h2 {
+    font-size: 20px;
+    margin-top: -5px;
+    padding-bottom: 15px;
+}
+#wrapper h2:after {
+    margin-top: 12px;
+}
+#wrapper {
+    width: 90%;
+}
+#wrapper input:not([type="checkbox"]) {
+	width:84%;
+}
+#wrapper p.button input {
+    font-size: 15px;
+}
+#wrapper p.change_link a {
+    font-size: 14px;
+}
+p.agileits {
+    padding: 20px 0px;
+}
+}

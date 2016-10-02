@@ -1,28 +1,58 @@
-<%= form_tag generate_pdf_welcome_index_path do %>
-  <div>
-    <%= label_tag '寄件人姓名' %>
-    <%= text_field_tag 'senderName' %>
-  </div>
-  <div>
-    <%= label_tag '寄件人詳細地址' %>
-    <%= text_field_tag 'senderAddr' %>
-  </div>
-  <div>
-    <%= label_tag '收件人姓名' %>
-    <%= text_field_tag 'receiverName' %>
-  </div>
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!doctype html>
+<html>
+<head>
+<title>Majestic Login Form Flat Responsive widget Template :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Majestic Login Form Widget Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- font files -->
+<link href='//fonts.googleapis.com/css?family=Muli:400,300,300italic,400italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+<!-- /font files -->
+<!-- css files -->
+<link href="css/animate-custom.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- /css files -->
+</head>
+<body>
+<h1 class="w3ls"><a href="https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW" target="_blank">台灣郵局存證信函產生器</a></h1>
+<div id="container_demo" >
+    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+    <a class="hiddenanchor" id="toregister"></a>
+    <a class="hiddenanchor" id="tologin"></a>
+    <div id="wrapper">
+        <div id="login" class="animate form">
+          <%= form_tag generate_pdf_welcome_index_path do %>
+            <h2>網頁版</h2>
 
-  <div>
-    <%= label_tag '收件人詳細地址' %>
-    <%= text_field_tag 'receiverAddr' %>
-  </div>
-  <div>
-    <%= label_tag '副本收件人姓名' %>
-    <%= text_field_tag 'ccName' %>
-  </div>
-  <div>
-    <%= label_tag '副本收件人詳細地址' %>
-    <%= text_field_tag 'ccAddr' %>
-  </div>
-  <div><%= submit_tag '產生文件' %></div>
-<% end %>
+              <%= label_tag '寄件人姓名' %>
+              <%= text_field_tag 'senderName' %>
+
+              <%= label_tag '寄件人詳細地址' %>
+              <%= text_field_tag 'senderAddr' %>
+              <%= label_tag '收件人姓名' %>
+              <%= text_field_tag 'receiverName' %>
+              <%= label_tag '收件人詳細地址' %>
+              <%= text_field_tag 'receiverAddr' %>
+
+              <%= label_tag '副本收件人姓名' %>
+              <%= text_field_tag 'ccName' %>
+
+              <%= label_tag '副本收件人詳細地址' %>
+              <%= text_field_tag 'ccAddr' %>
+
+            <div><%= submit_tag '產生文件' %></div>
+          <% end %>
+        </div>
+	</div>
+</div>
+
+</body>
+</html>
