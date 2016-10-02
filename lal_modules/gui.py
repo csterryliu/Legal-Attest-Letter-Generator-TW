@@ -136,11 +136,7 @@ class GUI:
         if not self.opened_filename:
             self.opened_filename = temp
             return
-        self.root.title(self.opened_filename + ' - ' + self.program_title)
-        current_text = self.article_text.get('1.0', 'end')
-        with open(self.opened_filename, 'w', encoding='utf-8') as text_file:
-            text_file.write(current_text)
-        self.status_label.config(text='已存檔')
+        self.__do_save()
 
     def __save_to_new_file(self):
         temp = self.opened_filename
@@ -150,6 +146,9 @@ class GUI:
         if not self.opened_filename:
             self.opened_filename = temp
             return
+        self.__do_save()
+
+    def __do_save(self):
         self.root.title(self.opened_filename + ' - ' + self.program_title)
         current_text = self.article_text.get('1.0', 'end')
         with open(self.opened_filename, 'w', encoding='utf-8') as text_file:
