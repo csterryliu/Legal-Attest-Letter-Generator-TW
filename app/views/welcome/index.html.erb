@@ -1,1 +1,28 @@
-<%= link_to("Download pdf", generate_pdf_welcome_index_path, method: :post) %>
+<%= form_tag generate_pdf_welcome_index_path do %>
+  <div>
+    <%= label_tag '寄件人姓名' %>
+    <%= text_field_tag 'senderName' %>
+  </div>
+  <div>
+    <%= label_tag '寄件人詳細地址' %>
+    <%= text_field_tag 'senderAddr' %>
+  </div>
+  <div>
+    <%= label_tag '收件人姓名' %>
+    <%= text_field_tag 'receiverName' %>
+  </div>
+
+  <div>
+    <%= label_tag '收件人詳細地址' %>
+    <%= text_field_tag 'receiverAddr' %>
+  </div>
+  <div>
+    <%= label_tag '副本收件人姓名' %>
+    <%= text_field_tag 'ccName' %>
+  </div>
+  <div>
+    <%= label_tag '副本收件人詳細地址' %>
+    <%= text_field_tag 'ccAddr' %>
+  </div>
+  <div><%= submit_tag '產生文件' %></div>
+<% end %>
