@@ -74,8 +74,7 @@ class GUI:
         self.mainframe.pack(fill='both', expand='yes')
 
     def __init_var(self):
-        self.version = 'v2.1.1'
-        self.program_title = '台灣郵局存證信函產生器 ' + self.version
+        self.program_title = '台灣郵局存證信函產生器 ' + core.VERSION
         self.opened_filename = None
         self.senders = []
         self.senders_addr = []

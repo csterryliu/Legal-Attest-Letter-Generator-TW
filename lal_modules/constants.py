@@ -1,7 +1,7 @@
 """
 Constants which will be used in the main logic.
 """
-
+VERSION = 'v2.2.2'
 LETTER_FORMAT_PATH = 'res/tw_lal.pdf'
 GENERATED_TEXT_PATH = 'content.pdf'
 GENERATED_BLANK_LETTER_PATH = 'blank_letter.pdf'

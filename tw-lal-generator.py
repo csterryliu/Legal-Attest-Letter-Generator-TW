@@ -25,8 +25,9 @@ def main():
     print('Done. Filename: ', output_filename)
 
 def process_args():
-    arg_parser = argparse.ArgumentParser(description=u'台灣郵局存證信函產生器',
-                                         add_help=False)
+    arg_parser = argparse.ArgumentParser(
+                            description=u'台灣郵局存證信函產生器 ' + core.VERSION,
+                            add_help=False)
     arg_parser.add_argument('--help',
                             action='help',
                             help=u'顯示使用說明')
