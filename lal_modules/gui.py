@@ -82,10 +82,11 @@ class GUI:
         self.receivers_addr = []
         self.ccs = []
         self.cc_addr = []
+        self.target = ['寄件人', '收件人', '副本收件人']
         self.target_lists = {
-            '寄件人': (self.senders, self.senders_addr),
-            '收件人': (self.receivers, self.receivers_addr),
-            '副本收件人': (self.ccs, self.cc_addr)
+            self.target[0]: (self.senders, self.senders_addr),
+            self.target[1]: (self.receivers, self.receivers_addr),
+            self.target[2]: (self.ccs, self.cc_addr)
         }
 
     def __do_work(self, sender_list, sender_addr_list,
@@ -152,7 +153,7 @@ class GUI:
         self.root.title(self.opened_filename + ' - ' + self.program_title)
         current_text = self.article_text.get('1.0', 'end')
         with open(self.opened_filename, 'w', encoding='utf-8') as text_file:
-            for k in ['寄件人', '收件人', '副本收件人']:
+            for k in self.target:
                 text_file.write(k + '：\n')
                 core.fill_name_address(self.target_lists[k][0],
                                        self.target_lists[k][1],
@@ -219,7 +220,7 @@ class GUI:
     def __show_info(self):
         self.info_text.config(state='normal')
         self.info_text.delete('1.0', 'end')
-        for k in ['寄件人', '收件人', '副本收件人']:
+        for k in self.target:
             self.info_text.insert('end', k + '：\n')
             core.fill_name_address(self.target_lists[k][0],
                                    self.target_lists[k][1],
