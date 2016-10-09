@@ -204,21 +204,20 @@ class GUI:
         self.info_text.delete('1.0', 'end')
         for k in ['寄件人', '收件人', '副本收件人']:
             self.info_text.insert('end', k + '：\n')
-            self.__insert_all_info(self.info_text,
-                                   self.target_lists[k][0],
-                                   self.target_lists[k][1])
+            core.fill_name_address(self.target_lists[k][0],
+                                   self.target_lists[k][1],
+                                   self.__insert_info_if_empty,
+                                   self.__insert_info_if_nonempty)
         self.info_text.config(state='disable')
 
-    def __insert_all_info(self, text_widget, namelist, addrlist):
-        max_count = max(len(namelist), len(addrlist))
-        if max_count == 0:
-            text_widget.insert('end', '\t\t姓名：\n')
-            text_widget.insert('end', '\t\t詳細地址：\n')
-        for i in range(max_count):
-            all_name = ' '.join(namelist[i]) if i <= len(namelist)-1 else ''
-            text_widget.insert('end', '\t\t姓名： ' + all_name + '\n')
-            address = addrlist[i] if i <= len(addrlist)-1 else ''
-            text_widget.insert('end', '\t\t詳細地址： ' + address + '\n')
+    def __insert_info_if_empty(self, **kwargs):
+        self.info_text.insert('end', '\t\t姓名：\n')
+        self.info_text.insert('end', '\t\t詳細地址：\n')
+
+    def __insert_info_if_nonempty(self, all_name, address, **kwargs):
+        self.info_text.insert('end', '\t\t姓名： ' + all_name + '\n')
+        self.info_text.insert('end', '\t\t詳細地址： ' + address + '\n')
+        return {}
 
     def mainloop(self):
         self.root.mainloop()

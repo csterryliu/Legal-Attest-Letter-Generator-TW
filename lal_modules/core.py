@@ -73,6 +73,17 @@ def _is_only_one_name_or_address(namelist, addresslist):
         ret_value = ret_value and (len(addresslist) == 1)
     return ret_value
 
+def _fill_name_address_on_1st_page(painter, namelist, addresslist, type_):
+    if len(namelist) == 1:
+        all_name = ' '.join(namelist[0])
+        painter.draw_string(NAME_COORDINATE[type_+'_x_y_begin'][0],
+                            NAME_COORDINATE[type_+'_x_y_begin'][1],
+                            all_name)
+    if len(addresslist) == 1:
+        painter.draw_string(ADDR_COORDINATE[type_+'_x_y_begin'][0],
+                            ADDR_COORDINATE[type_+'_x_y_begin'][1],
+                            addresslist[0])
+
 def _parse_main_article(painter, page_pick, main_text):
     print('Parse main article...')
     x_begin, y_begin, line_counter, char_counter = _reset_coordinates_and_counters()
@@ -116,60 +127,64 @@ def _draw_info_box(painter,
     painter.draw_string(CHT_IN_RECT_X_Y[0], CHT_IN_RECT_X_Y[1], u'印')
 
     painter.draw_string(TITLE_START[0], TITLE_START[1], u'一、寄件人')
-    x_begin = DETAIL_START[0]
-    y_begin = DETAIL_START[1]
-    y_begin = _fill_name_address_in_info_box(painter,
-                                             x_begin, y_begin,
-                                             sender_list, sender_addr_list)
+    kwargs = {'painter': painter, 'x_begin': DETAIL_START[0], 'y_begin': DETAIL_START[1]}
+    kwargs = fill_name_address(sender_list, sender_addr_list,
+                               _fill_info_if_empty, _fill_info_if_nonempty,
+                               **kwargs)
 
-    y_begin -= TITLE_Y_INTERVAL
-    painter.draw_string(TITLE_START[0], y_begin, u'二、收件人')
-    y_begin = _fill_name_address_in_info_box(painter,
-                                             x_begin, y_begin,
-                                             receiver_list, receiver_addr_list)
+    kwargs['y_begin'] -= TITLE_Y_INTERVAL
+    painter.draw_string(TITLE_START[0], kwargs['y_begin'], u'二、收件人')
+    kwargs = fill_name_address(receiver_list, receiver_addr_list,
+                               _fill_info_if_empty, _fill_info_if_nonempty,
+                               **kwargs)
 
-    y_begin -= TITLE_Y_INTERVAL
-    painter.draw_string(TITLE_START[0], y_begin, u'三、')
+    kwargs['y_begin'] -= TITLE_Y_INTERVAL
+    painter.draw_string(TITLE_START[0], kwargs['y_begin'], u'三、')
     painter.draw_string(TITLE_START[0]+CC_RECEIVER_FIX_X_Y[0],
-                        y_begin+CC_RECEIVER_FIX_X_Y[1], u'副 本')
+                        kwargs['y_begin']+CC_RECEIVER_FIX_X_Y[1], u'副 本')
     painter.draw_string(TITLE_START[0]+CC_RECEIVER_FIX_X_Y[0],
-                        y_begin-CC_RECEIVER_FIX_X_Y[1], u'收件人')
-    y_begin = _fill_name_address_in_info_box(painter,
-                                             x_begin, y_begin,
-                                             cc_list, cc_addr_list)
+                        kwargs['y_begin']-CC_RECEIVER_FIX_X_Y[1], u'收件人')
+    kwargs = fill_name_address(cc_list, cc_addr_list,
+                               _fill_info_if_empty, _fill_info_if_nonempty,
+                               **kwargs)
 
     painter.draw_line(BOX_UPPDERLEFT_X_Y[0], BOX_UPPDERLEFT_X_Y[1],
-                      BOX_UPPDERLEFT_X_Y[0], y_begin)  # left
-    painter.draw_line(BOX_UPPDERLEFT_X_Y[0], y_begin,
-                      BOX_UPPDERRIGHT_X_Y[0], y_begin)  # buttom
+                      BOX_UPPDERLEFT_X_Y[0], kwargs['y_begin'])  # left
+    painter.draw_line(BOX_UPPDERLEFT_X_Y[0], kwargs['y_begin'],
+                      BOX_UPPDERRIGHT_X_Y[0], kwargs['y_begin'])  # buttom
     painter.draw_line(BOX_UPPDERRIGHT_X_Y[0], BOX_UPPDERRIGHT_X_Y[1],
-                      BOX_UPPDERRIGHT_X_Y[0], y_begin)  # right
+                      BOX_UPPDERRIGHT_X_Y[0], kwargs['y_begin'])  # right
 
-def _fill_name_address_in_info_box(painter, x_begin, y_begin, namelist, addresslist):
+# template method pattern
+# skeleton
+def fill_name_address(namelist, addresslist,
+                      do_when_list_empty, do_when_list_nonempty,
+                      **kwargs):
     max_count = max(len(namelist), len(addresslist))
+    ret_value = None
     if max_count == 0:
-        painter.draw_string(x_begin, y_begin, u'姓名：')
-        y_begin -= DETAIL_Y_INTERVAL
-        painter.draw_string(x_begin, y_begin, u'詳細地址：')
-        y_begin -= DETAIL_Y_INTERVAL
+        do_when_list_empty(**kwargs)
 
     for i in range(max_count):
         all_name = ' '.join(namelist[i]) if i <= len(namelist)-1 else ''
-        painter.draw_string(x_begin, y_begin, u'姓名：' + all_name)
-        y_begin -= DETAIL_Y_INTERVAL
         address = addresslist[i] if i <= len(addresslist)-1 else ''
-        painter.draw_string(x_begin, y_begin, u'詳細地址：' + address)
-        y_begin -= DETAIL_Y_INTERVAL
+        kwargs = do_when_list_nonempty(all_name, address, **kwargs)
 
-    return y_begin
+    return kwargs
 
-def _fill_name_address_on_1st_page(painter, namelist, addresslist, type_):
-    if len(namelist) == 1:
-        all_name = ' '.join(namelist[0])
-        painter.draw_string(NAME_COORDINATE[type_+'_x_y_begin'][0],
-                            NAME_COORDINATE[type_+'_x_y_begin'][1],
-                            all_name)
-    if len(addresslist) == 1:
-        painter.draw_string(ADDR_COORDINATE[type_+'_x_y_begin'][0],
-                            ADDR_COORDINATE[type_+'_x_y_begin'][1],
-                            addresslist[0])
+# action
+def _fill_info_if_empty(**kwargs):
+    painter.draw_string(kwargs['x_begin'], kwargs['y_begin'], u'姓名：')
+    kwargs['y_begin'] -= DETAIL_Y_INTERVAL
+    painter.draw_string(kwargs['x_begin'], kwargs['y_begin'], u'詳細地址：')
+    kwargs['y_begin'] -= DETAIL_Y_INTERVAL
+
+# action
+def _fill_info_if_nonempty(all_name, address, **kwargs):
+    kwargs['painter'].draw_string(kwargs['x_begin'], kwargs['y_begin'],
+                                  u'姓名：' + all_name)
+    kwargs['y_begin'] -= DETAIL_Y_INTERVAL
+    kwargs['painter'].draw_string(kwargs['x_begin'], kwargs['y_begin'],
+                                  u'詳細地址：' + address)
+    kwargs['y_begin'] -= DETAIL_Y_INTERVAL
+    return kwargs
