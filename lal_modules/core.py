@@ -168,6 +168,7 @@ def fill_name_address(namelist, addresslist,
     for i in range(max_count):
         all_name = ' '.join(namelist[i]) if i <= len(namelist)-1 else ''
         address = addresslist[i] if i <= len(addresslist)-1 else ''
+        # TODO How to propagate the necessary input parameter nicely?
         kwargs = do_when_list_nonempty(all_name, address, **kwargs)
 
     return kwargs

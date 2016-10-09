@@ -152,8 +152,25 @@ class GUI:
         self.root.title(self.opened_filename + ' - ' + self.program_title)
         current_text = self.article_text.get('1.0', 'end')
         with open(self.opened_filename, 'w', encoding='utf-8') as text_file:
+            for k in ['寄件人', '收件人', '副本收件人']:
+                text_file.write(k + '：\n')
+                core.fill_name_address(self.target_lists[k][0],
+                                       self.target_lists[k][1],
+                                       self.__save_info_if_zero,
+                                       self.__save_info_if_nonzero,
+                                       **{'fd': text_file})
+            text_file.write('########################################\n')
             text_file.write(current_text)
         self.status_label.config(text='已存檔')
+
+    def __save_info_if_zero(self, **kwargs):
+        kwargs['fd'].write('\t\t姓名：\n')
+        kwargs['fd'].write('\t\t詳細地址：\n')
+
+    def __save_info_if_nonzero(self, all_name, address, **kwargs):
+        kwargs['fd'].write('\t\t姓名： ' + all_name + '\n')
+        kwargs['fd'].write('\t\t詳細地址： ' + address + '\n')
+        return kwargs
 
     def __export_to_pdf(self):
         self.output_filename = tkinter.filedialog.asksaveasfilename(
@@ -217,7 +234,7 @@ class GUI:
     def __insert_info_if_nonempty(self, all_name, address, **kwargs):
         self.info_text.insert('end', '\t\t姓名： ' + all_name + '\n')
         self.info_text.insert('end', '\t\t詳細地址： ' + address + '\n')
-        return {}
+        return kwargs
 
     def mainloop(self):
         self.root.mainloop()
