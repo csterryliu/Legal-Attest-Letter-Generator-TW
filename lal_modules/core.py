@@ -30,7 +30,7 @@ def merge_text_and_letter(text_path, letter_path, output_filename):
 
 def gen_filepath(prefix, length):
     now = datetime.datetime.now()
-    prefix = ('%s-%s-' % prefix, now.strftime('%Y%m%d%H%M%S'))
+    prefix = ('%s-%s-' % (prefix, now.strftime('%Y%m%d%H%M%S')))
     return prefix.join(
         random.choice(string.ascii_lowercase) for i in range(length))
 
