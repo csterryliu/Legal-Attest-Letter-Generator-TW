@@ -28,11 +28,14 @@ def merge_text_and_letter(text_path, letter_path, output_filename):
         page_merge.merge_src_page_to_dest_page(i, i)
     page_merge.save()
 
-def gen_filepath(prefix, length):
+def gen_filename(rand_length):
     now = datetime.datetime.now()
-    prefix = ('%s-%s-' % (prefix, now.strftime('%Y%m%d%H%M%S')))
-    return prefix.join(
-        random.choice(string.ascii_lowercase) for i in range(length))
+    prefix = ''.join(
+        random.choice(string.ascii_lowercase) for i in range(rand_length))
+    rand_str = ''.join(
+        random.choice(string.ascii_lowercase) for i in range(rand_length))
+    ret = ('%s-%s-%s' % (prefix, now.strftime('%Y%m%d%H%M%S.%f'), rand_str))
+    return ret
 
 
 def clean_temp_files(text_path, letter_path):
@@ -43,8 +46,8 @@ def generate_text_and_letter(senders, senders_addr,
                              receivers, receivers_addr,
                              ccs, cc_addr,
                              main_text):
-    text_path = gen_filepath('text', 10)
-    letter_path = gen_filepath('letter', 10)
+    text_path = gen_filename(20)
+    letter_path = gen_filename(21)
     generator = pdfpainter.PDFPainter(text_path,
                                       LETTER_FORMAT_WIDE_HEIGHT[0], LETTER_FORMAT_WIDE_HEIGHT[1])
     blank_letter_producer = pdfpage.PDFPagePick(LETTER_FORMAT_PATH, letter_path)
