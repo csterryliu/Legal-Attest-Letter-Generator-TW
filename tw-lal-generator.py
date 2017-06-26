@@ -13,12 +13,15 @@ def main():
     text = core.read_main_article(args.article_file)
     output_filename = args.outputFileName
 
-    core.generate_text_and_letter(senders, senders_addr,
-                                  receivers, receivers_addr,
-                                  ccs, cc_addr,
-                                  text)
-    core.merge_text_and_letter(output_filename)
-    core.clean_temp_files()
+    text_path, letter_path = core.generate_text_and_letter(senders,
+                                                           senders_addr,
+                                                           receivers,
+                                                           receivers_addr,
+                                                           ccs,
+                                                           cc_addr,
+                                                           text)
+    core.merge_text_and_letter(text_path, letter_path, output_filename)
+    core.clean_temp_files(text_path, letter_path)
 
     print('Done. Filename: ', output_filename)
 

@@ -3,8 +3,6 @@ Constants which will be used in the main logic.
 """
 
 LETTER_FORMAT_PATH = 'res/tw_lal.pdf'
-GENERATED_TEXT_PATH = 'content.pdf'
-GENERATED_BLANK_LETTER_PATH = 'blank_letter.pdf'
 DEFAULT_FONT_PATH = 'res/TW-Kai-98_1.ttf'
 _PDF_INCH = 72
 ########################################################################
