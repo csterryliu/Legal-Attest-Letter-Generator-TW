@@ -1,4 +1,0 @@
-repo: f19e0a2433abc72c041b028bc15995894be2ffa7
-node: fe660f227cac655c5e8b0e816615470ec17da996
-branch: default
-tag: ReportLab_3_3_0

@@ -26,11 +26,16 @@ Please click [here](https://github.com/csterryliu/Legal-Attest-Letter-Generator-
 ## How To Use It ##
 Please read [Wiki](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW/wiki/).
 
-## Dependency ##
-- [PyPDF2 1.26](https://github.com/mstamy2/PyPDF2)  
-- [reportlab 3.3.0](https://bitbucket.org/rptlab/reportlab)
+## Dependencies ##
+- [PyPDF2 3.0.1](https://pypi.org/project/PyPDF2/)
+- [reportlab 4.0.9](https://pypi.org/project/reportlab/)
 - [Letter sample provided by Post Office of Taiwan](http://www.post.gov.tw/post/internet/Download/index.jsp?ID=220301)
 - [Traditional Chinese font provided by National Development Council, Taiwan ](http://data.gov.tw/node/5961)
+
+### Install Dependencies ###
+```shell
+% pip install -r requirements.txt
+```
 
 ## Roadmap ##
 - Provide online web service
