@@ -1,6 +1,0 @@
-#!/bin/sh
-d=`dirname $0`
-[ x$d = x ] && d=`pwd`
-export PYTHONPATH=$d/../src
-
-epydoc --html reportlab --docformat=restructuredtext --no-private
