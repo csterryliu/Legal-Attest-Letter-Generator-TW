@@ -175,9 +175,9 @@ def fill_name_address(namelist, addresslist,
 
 # action
 def _fill_info_if_empty(**kwargs):
-    painter.draw_string(kwargs['x_begin'], kwargs['y_begin'], u'姓名：')
+    kwargs['painter'].draw_string(kwargs['x_begin'], kwargs['y_begin'], u'姓名：')
     kwargs['y_begin'] -= DETAIL_Y_INTERVAL
-    painter.draw_string(kwargs['x_begin'], kwargs['y_begin'], u'詳細地址：')
+    kwargs['painter'].draw_string(kwargs['x_begin'], kwargs['y_begin'], u'詳細地址：')
     kwargs['y_begin'] -= DETAIL_Y_INTERVAL
 
 # action
